@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#0B7CD5</color>
+    <color name="welcome">#CE223C</color>
+    <color name="blueLight">#8DDAFF</color>
+    <color name="blueLightPressed">#57CAFF</color>
+    <color name="blueDark">#002DCE</color>
+    <color name="blueMiddle">#193CB6</color>
+    <color name="blueDarkDark">#00197C</color>
+    <color name="purpleDarkDark">#000B3C</color>
+    <color name="purpleHint">#4F4F72</color>
+    <color name="white">#FFFFFF</color>
+    <color name="greyLight">#E6E2E2</color>
+    <color name="greyLightLight">#EEEEEE</color>
+</resources>

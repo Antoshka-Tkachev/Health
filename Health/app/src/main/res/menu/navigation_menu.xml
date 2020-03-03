@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Профиль" />
+        <item
+            android:id="@+id/nav_eat"
+            android:icon="@drawable/ic_eat"
+            android:title="Еда" />
+        <item
+            android:id="@+id/nav_water"
+            android:icon="@drawable/ic_water"
+            android:title="Вода" />
+        <item
+            android:id="@+id/nav_sleep"
+            android:icon="@drawable/ic_sleep"
+            android:title="Сон" />
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_notifications"
+            android:title="Напоминания" />
+    </group>
+
+    <item android:title="Cистема">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_exit"
+                android:title="Выход" />
+        </menu>
+    </item>
+
+</menu>

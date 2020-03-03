@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_splash_screen"
+    tools:context=".ActivityAuthorization">
+
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="7dp"
+
+        app:columnCount="2"
+        app:orientation="horizontal"
+        android:background="@drawable/background_sign_in"
+        android:elevation="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entrance"
+            app:layout_columnSpan="2"
+            app:layout_gravity="center"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="45sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+            android:text="Логин:"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="28sp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textVisiblePassword"
+            android:ems="8"
+            android:hint="Введите логин"
+            android:textSize="23sp"
+            android:textColor="@color/blueDarkDark"
+            android:textColorHint="@color/purpleHint"
+            android:background="@drawable/background_edit_text_authorization" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Пароль:"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="28sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:inputType="textPassword"
+            android:ems="8"
+            android:hint="Введите пароль"
+            android:textSize="23sp"
+            android:textColor="@color/blueDarkDark"
+            android:textColorHint="@color/purpleHint"
+            android:background="@drawable/background_edit_text_authorization" />
+
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            app:layout_columnSpan="2"
+            app:layout_gravity="fill">
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Запомнить"
+                android:textColor="@color/blueDarkDark"
+                android:textSize="20sp"
+                android:theme="@style/CheckBoxAuthorization"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/background_button_authorization"
+                android:text="Войти"
+                android:textColor="@color/blueDarkDark"
+                android:textSize="20sp"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/background_button_authorization"
+            android:text="Зарегестрироваться"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            app:layout_columnSpan="2"
+            app:layout_gravity="center"
+            android:onClick="onClickSingUp"/>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</LinearLayout>
