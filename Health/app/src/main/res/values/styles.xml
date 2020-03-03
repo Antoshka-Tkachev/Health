@@ -1,7 +1,7 @@
 <resources>
 
     <style name="SplashScreenLauncher" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <item name="android:colorBackground">@drawable/background_splash_screen</item>
+        <item name="android:windowBackground">@drawable/background_splash_screen</item>
         <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorPrimary">@color/blueDarkDark</item>
         <item name="colorAccent">@color/blueLight</item>
@@ -9,6 +9,7 @@
         <item name="colorControlActivated">@color/blueDarkDark</item>
         <item name="colorControlHighlight">@color/blueDarkDark</item>
     </style>
+
 
     <style name="CheckBoxAuthorization">
         <item name="colorControlNormal">@color/blueDarkDark</item>
@@ -21,7 +22,6 @@
         <item name="colorControlNormal">@color/blueDarkDark</item>
         <item name="colorControlActivated">@color/blueDarkDark</item>
         <item name="colorControlHighlight">@color/blue</item>
-
     </style>
 
 </resources>
