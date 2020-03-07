@@ -18,10 +18,8 @@
 
     <style name="HomeActivity" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="colorPrimaryDark">@color/blue</item>
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorControlNormal">@color/blueDarkDark</item>
         <item name="colorControlActivated">@color/blueDarkDark</item>
-        <item name="colorControlHighlight">@color/blue</item>
+        <item name="colorControlHighlight">@color/blueLight</item>
     </style>
 
 </resources>

@@ -33,7 +33,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
 
         navigationView.setItemIconTintList(null);
 
-        findViewById(R.id.menuImage).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.iv_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);

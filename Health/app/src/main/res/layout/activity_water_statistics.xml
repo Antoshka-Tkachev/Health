@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ActivityWaterStatistics">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal"
+            android:background="@color/blue"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_backscape"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_backscape"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Статистика"
+                android:textColor="@color/white"
+                android:textSize="23sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:elevation="5dp">
+
+            <ToggleButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="Год"
+                android:textOff="Год"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water1"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+            <ToggleButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="Месяц"
+                android:textOff="Месяц"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water2"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+            <ToggleButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="Неделя"
+                android:textOff="Неделя"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water3"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:src="@drawable/ic_chevron_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:background="@color/white"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="10-17 марта 2020"
+                android:textSize="20sp"
+                android:textColor="@color/blueDarkDark"
+                android:textAllCaps="false"/>
+
+            <ImageButton
+                android:src="@drawable/ic_chevron_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="17 марта"
+            android:textSize="20sp"
+            android:textColor="@color/blueDarkDark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="1234 мл"
+                android:textSize="35sp"
+                android:textColor="@color/blueDarkDark"/>
+
+        </LinearLayout>
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bc_water"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/white"/>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            app:columnCount="2"
+            app:orientation="horizontal"
+            android:elevation="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_gravity="center"
+                android:gravity="center"
+                android:text="Всего (мл)"
+                android:textSize="20sp"
+                android:textColor="@color/blueDarkDark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_gravity="center"
+                android:gravity="center"
+                android:text="Среднее (мл)"
+                android:textSize="20sp"
+                android:textColor="@color/blueDarkDark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_gravity="center"
+                android:gravity="center"
+                android:text="20 000"
+                android:textSize="35sp"
+                android:textColor="@color/blueDarkDark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_gravity="center"
+                android:gravity="center"
+                android:text="1950"
+                android:textSize="35sp"
+                android:textColor="@color/blueDarkDark"/>
+
+        </androidx.gridlayout.widget.GridLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

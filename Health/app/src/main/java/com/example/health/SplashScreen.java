@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(2500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

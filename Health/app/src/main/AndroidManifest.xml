@@ -9,17 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
-
+        <activity
+            android:name=".ActivityWaterStatistics"
+            android:theme="@style/HomeActivity"/>
         <activity
             android:name=".ActivityHome"
-            android:theme="@style/HomeActivity"/>
-
+            android:theme="@style/HomeActivity" />
         <activity android:name=".ActivityRegistration" />
-
         <activity
             android:name=".ActivityAuthorization"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

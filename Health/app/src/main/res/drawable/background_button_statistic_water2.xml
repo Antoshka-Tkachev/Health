@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:state_pressed="true">
+        android:state_checked="true">
         <shape
             android:shape="rectangle">
-            <corners android:radius="30dp"/>
-            <solid android:color="@color/blueLightPressed"/>
+            <solid android:color="@color/blueMiddle"/>
 
         </shape>
     </item>
@@ -13,7 +12,6 @@
     <item>
         <shape
             android:shape="rectangle">
-            <corners android:radius="30dp" />
             <solid android:color="@color/blue" />
 
         </shape>

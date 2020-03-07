@@ -12,4 +12,7 @@
     <color name="white">#FFFFFF</color>
     <color name="greyLight">#E6E2E2</color>
     <color name="greyLightLight">#EEEEEE</color>
+    <color name="black">#000000</color>
+
+
 </resources>
