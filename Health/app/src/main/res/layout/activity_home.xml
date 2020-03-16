@@ -27,6 +27,7 @@
 
             <ImageView
                 android:id="@+id/iv_menu"
+                android:onClick="onClickMenu"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_menu"

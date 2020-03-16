@@ -8,8 +8,8 @@
         <item name="colorControlNormal">@color/blueDarkDark</item>
         <item name="colorControlActivated">@color/blueDarkDark</item>
         <item name="colorControlHighlight">@color/blueDarkDark</item>
+        <item name="alertDialogTheme">@style/Dialog</item>
     </style>
-
 
     <style name="CheckBoxAuthorization">
         <item name="colorControlNormal">@color/blueDarkDark</item>
@@ -21,5 +21,14 @@
         <item name="colorControlActivated">@color/blueDarkDark</item>
         <item name="colorControlHighlight">@color/blueLight</item>
     </style>
+
+    <style name="Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/welcome</item>
+        <item name="android:windowBackground">@drawable/background_alert_dialog</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
 
 </resources>

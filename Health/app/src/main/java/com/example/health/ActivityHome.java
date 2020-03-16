@@ -7,38 +7,37 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class ActivityHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
+    private UserProfile userProfile;
 
-    FragmentProfile fragmentProfile;
-    FragmentWater fragmentWater;
-    FragmentTransaction transaction;
+
+    private TextView tv_nameInHeader;
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+
+    private FragmentProfile fragmentProfile;
+    private FragmentWater fragmentWater;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-   
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
+
         navigationView.setNavigationItemSelectedListener(this);
-
         navigationView.setItemIconTintList(null);
-
-        findViewById(R.id.iv_menu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
 
         fragmentProfile = new FragmentProfile();
         fragmentWater = new FragmentWater();
@@ -46,6 +45,14 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragmentProfile);
         transaction.commit();
+
+
+        View header = navigationView.getHeaderView(0);
+        userProfile = UserProfile.getInstance();
+        tv_nameInHeader = header.findViewById(R.id.tv_nameInHeader);
+        String nameInHeader = userProfile.getFirstName() + " " + userProfile.getLastName();
+        tv_nameInHeader.setText(nameInHeader);
+
 
     }
 
@@ -77,4 +84,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void onClickMenu(View v) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
 }

@@ -69,6 +69,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/et_loginReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -88,6 +89,7 @@
             android:elevation="5dp"/>
 
         <EditText
+            android:id="@+id/et_passwordReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -107,6 +109,7 @@
             android:elevation="5dp"/>
 
         <EditText
+            android:id="@+id/et_replayPasswordReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -126,6 +129,7 @@
             android:elevation="5dp"/>
 
         <EditText
+            android:id="@+id/et_firstNameReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -145,6 +149,7 @@
             android:elevation="5dp"/>
 
         <EditText
+            android:id="@+id/et_lastNameReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -164,6 +169,7 @@
             android:elevation="5dp"/>
 
         <EditText
+            android:id="@+id/et_heightReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -176,13 +182,14 @@
             android:paddingRight="10dp"
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
-            android:inputType="number"
+            android:inputType="date"
             android:hint="Рост в см"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
 
         <EditText
+            android:id="@+id/et_weightReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -195,12 +202,13 @@
             android:paddingRight="10dp"
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
-            android:inputType="number"
+            android:inputType="date"
             android:hint="Вес в кг"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"/>
 
         <EditText
+            android:id="@+id/et_dateOfBirthReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -248,6 +256,7 @@
                 android:gravity="center">
 
                 <RadioButton
+                    android:id="@+id/rbtn_genderBoyReg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -257,6 +266,7 @@
                     android:textColor="@color/blueDarkDark"/>
 
                 <RadioButton
+                    android:id="@+id/rbtn_genderGirlReg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Женский"
@@ -267,8 +277,8 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/signUp"
-            android:onClick="onClickSignUp"
+            android:id="@+id/signUpReg"
+            android:onClick="onClickSignUpReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

@@ -40,6 +40,7 @@
             android:textSize="28sp"/>
 
         <EditText
+            android:id="@+id/et_loginAuth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textVisiblePassword"
@@ -62,6 +63,7 @@
             android:textSize="28sp" />
 
         <EditText
+            android:id="@+id/et_passwordAuth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -83,6 +85,7 @@
             app:layout_gravity="fill">
 
             <CheckBox
+                android:id="@+id/cb_remember"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -92,6 +95,8 @@
                 android:theme="@style/CheckBoxAuthorization"/>
 
             <Button
+                android:id="@+id/btn_signInAuth"
+                android:onClick="onClickSignInAuth"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -105,6 +110,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_signUpAuth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -118,7 +124,7 @@
             android:textAllCaps="false"
             app:layout_columnSpan="2"
             app:layout_gravity="center"
-            android:onClick="onClickSingUp"/>
+            android:onClick="onClickSignUpAuth"/>
 
     </androidx.gridlayout.widget.GridLayout>
 
