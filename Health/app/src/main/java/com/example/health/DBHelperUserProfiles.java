@@ -18,6 +18,8 @@ public class DBHelperUserProfiles extends SQLiteOpenHelper {
     private final String COLUMN_DATE_OF_BIRTH = "date_of_birth";
     private final String COLUMN_GENDER = "gender";
     private final String COLUMN_REMEMBER = "remember";
+    private final String COLUMN_USER_PICTURE = "userPicture";
+
 
     private final Context context;
 
@@ -39,6 +41,7 @@ public class DBHelperUserProfiles extends SQLiteOpenHelper {
                 COLUMN_DATE_OF_BIRTH + " TEXT, " +
                 COLUMN_GENDER + " TEXT, " +
                 COLUMN_REMEMBER + " INTEGER, " +
+                COLUMN_USER_PICTURE + " BLOB, " +
                 "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueWater (user_id)" +
                 ");");
     }

@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import java.text.SimpleDateFormat;
@@ -28,6 +31,7 @@ public class ActivityRegistration extends AppCompatActivity {
     private EditText et_dateOfBirth;
     private RadioButton rbtn_genderBoy;
     private RadioButton rbtn_genderGirl;
+    private ImageView iv_userPicture;
 
     private String login;
     private String password;
@@ -63,7 +67,24 @@ public class ActivityRegistration extends AppCompatActivity {
         et_dateOfBirth = findViewById(R.id.et_dateOfBirthReg);
         rbtn_genderBoy = findViewById(R.id.rbtn_genderBoyReg);
         rbtn_genderGirl = findViewById(R.id.rbtn_genderGirlReg);
+        iv_userPicture = findViewById(R.id.iv_userPictureReg);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (userProfile.getUserPicture() != null) {
+            iv_userPicture.setImageBitmap(userProfile.getUserPicture());
+        } else {
+            Bitmap bitmap = ((BitmapDrawable)iv_userPicture.getDrawable()).getBitmap();
+            userProfile.setUserPicture(bitmap);
+        }
+    }
+
+    public void onClickUserPictureReg(View v) {
+        Intent intent = new Intent(ActivityRegistration.this, ActivityImageSelection.class);
+        startActivity(intent);
     }
 
     public void onClickSignUpReg(View v) {
@@ -80,7 +101,7 @@ public class ActivityRegistration extends AppCompatActivity {
 
         Intent intent = new Intent(this, ActivityHome.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     private boolean checkOfEnteredData() {
@@ -200,6 +221,14 @@ public class ActivityRegistration extends AppCompatActivity {
         userProfile.setAge(age);
 
         userProfile.setRemember(1);
+
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ActivityRegistration.this, ActivityAuthorization.class);
+        startActivity(intent);
+        finish();
+    }
 }

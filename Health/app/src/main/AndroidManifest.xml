@@ -9,17 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
+        <activity android:name=".ActivityImageSelection"></activity>
         <activity
             android:name=".ActivityWaterStatistics"
-            android:theme="@style/HomeActivity"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeActivity" />
         <activity
             android:name=".ActivityHome"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeActivity" />
-        <activity android:name=".ActivityRegistration" />
+        <activity
+            android:name=".ActivityRegistration"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityAuthorization"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".SplashScreen">
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

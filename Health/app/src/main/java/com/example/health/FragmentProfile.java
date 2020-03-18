@@ -8,16 +8,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FragmentProfile extends Fragment {
 
     private UserProfile userProfile;
+
     private TextView tv_name;
     private TextView tv_valueAge;
     private TextView tv_valueHeight;
     private TextView tv_valueWeight;
     private TextView tv_valueGender;
+    private ImageView iv_userPicture;
 
     public FragmentProfile() { }
 
@@ -34,22 +37,28 @@ public class FragmentProfile extends Fragment {
         tv_valueHeight = view.findViewById(R.id.tv_valueHeight);
         tv_valueWeight = view.findViewById(R.id.tv_valueWeight);
         tv_valueGender = view.findViewById(R.id.tv_valueGender);
+        iv_userPicture = view.findViewById(R.id.iv_userPictureProf);
+
 
         //set'аем занчения из userProfile
         String name = userProfile.getFirstName() + " " + userProfile.getLastName();
         tv_name.setText(name);
+
         if (userProfile.getHeight() % 1 == 0) {
             tv_valueHeight.setText(String.valueOf((int)userProfile.getHeight()));
         } else {
             tv_valueHeight.setText(String.valueOf(userProfile.getHeight()));
         }
+
         if (userProfile.getWeight() % 1 == 0) {
             tv_valueWeight.setText(String.valueOf((int)userProfile.getWeight()));
         } else {
             tv_valueWeight.setText(String.valueOf(userProfile.getWeight()));
         }
+
         tv_valueAge.setText(String.valueOf(userProfile.getAge()));
         tv_valueGender.setText(String.valueOf(userProfile.getGender()));
+        iv_userPicture.setImageBitmap(userProfile.getUserPicture());
 
         return view;
     }

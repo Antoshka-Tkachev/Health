@@ -29,7 +29,7 @@
     <item android:title="Cистема">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_log_out"
                 android:icon="@drawable/ic_exit"
                 android:title="Выход" />
         </menu>

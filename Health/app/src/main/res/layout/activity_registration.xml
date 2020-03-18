@@ -60,9 +60,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/iv_userPictureReg"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:src="@drawable/heart" />
+                    android:onClick="onClickUserPictureReg"
+                    android:src="@drawable/card0" />
 
             </androidx.cardview.widget.CardView>
 

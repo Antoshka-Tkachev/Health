@@ -1,9 +1,11 @@
 package com.example.health;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 public class TableUserProfiles {
@@ -19,7 +21,7 @@ public class TableUserProfiles {
     private final String COLUMN_DATE_OF_BIRTH = "date_of_birth";
     private final String COLUMN_GENDER = "gender";
     private final String COLUMN_REMEMBER = "remember";
-
+    private final String COLUMN_USER_PICTURE = "userPicture";
 
     private int indexId;
     private int indexLogin;
@@ -31,6 +33,7 @@ public class TableUserProfiles {
     private int indexDateOfBirth;
     private int indexGender;
     private int indexRemember;
+    private int indexUserPicture;
 
     private UserProfile userProfile;
 
@@ -54,18 +57,21 @@ public class TableUserProfiles {
         indexDateOfBirth = cursor.getColumnIndex(COLUMN_DATE_OF_BIRTH);
         indexGender = cursor.getColumnIndex(COLUMN_GENDER);
         indexRemember = cursor.getColumnIndex(COLUMN_REMEMBER);
+        indexUserPicture = cursor.getColumnIndex(COLUMN_USER_PICTURE);
 
         cursor.close();
         database.close();
     }
 
     public void signIn() {
+
+        //Считываем данные в userProfile
         database = dbHelper.getWritableDatabase();
         Cursor cursor = database.rawQuery(
                 "SELECT * FROM " + TABLE_NAME +
                     " WHERE " +
-                    COLUMN_LOGIN + " = \'" +  userProfile.getLogin() + "\'" + " AND " +
-                    COLUMN_PASSWORD + " = \'" +  userProfile.getPassword() + "\'", null);
+                    COLUMN_LOGIN + " = ? AND " +
+                    COLUMN_PASSWORD + " = ? ", new String[] {userProfile.getLogin(), userProfile.getPassword()});
         cursor.moveToFirst();
 
         userProfile.setId(cursor.getInt(indexId));
@@ -76,52 +82,26 @@ public class TableUserProfiles {
         userProfile.setGender(cursor.getString(indexGender));
         userProfile.setDateOfBirth(cursor.getString(indexDateOfBirth));
 
+        Bitmap userPicture = BitmapUtility.getImage(cursor.getBlob(indexUserPicture));
+        userProfile.setUserPicture(userPicture);
+
         int age = userProfile.ageCalculation(userProfile.getDateOfBirth());
         userProfile.setAge(age);
 
-        database.execSQL("UPDATE " + TABLE_NAME +
-                " SET " + COLUMN_REMEMBER + " = " + userProfile.getRemember() +
-                " WHERE " + COLUMN_LOGIN + " = \'" + userProfile.getLogin() + "\'");
+        //Запрос на обновление
+        //Обновляем колонку "Запонмить"
+        String updateQuery = "UPDATE " + TABLE_NAME +
+                " SET " + COLUMN_REMEMBER + " = ? " +
+                " WHERE " + COLUMN_LOGIN + " = ? ";
 
-        database.close();
-        cursor.close();
-    }
+        SQLiteStatement statement = database.compileStatement(updateQuery);
 
-    public void signUp() {
-
-        //Запрос на добавление
-        String insertQuery = "INSERT INTO " + TABLE_NAME +
-                "(" +
-                COLUMN_LOGIN + ", " +
-                COLUMN_PASSWORD + ", " +
-                COLUMN_FIRST_NAME + ", " +
-                COLUMN_LAST_NAME + ", " +
-                COLUMN_HEIGHT + ", " +
-                COLUMN_WEIGHT + ", " +
-                COLUMN_DATE_OF_BIRTH + ", " +
-                COLUMN_GENDER + ", " +
-                COLUMN_REMEMBER +
-                ") " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
-        database = dbHelper.getWritableDatabase();
-
-        SQLiteStatement statement = database.compileStatement(insertQuery);
-
-        //добавляем user'a
         database.beginTransaction();
         try {
             statement.clearBindings();
 
-            statement.bindString(1, userProfile.getLogin());
-            statement.bindString(2, userProfile.getPassword());
-            statement.bindString(3, userProfile.getFirstName());
-            statement.bindString(4, userProfile.getLastName());
-            statement.bindDouble(5, userProfile.getHeight());
-            statement.bindDouble(6, userProfile.getWeight());
-            statement.bindString(7, userProfile.getDateOfBirth());
-            statement.bindString(8, userProfile.getGender());
-            statement.bindLong(9, userProfile.getRemember());
+            statement.bindLong(1, userProfile.getRemember());
+            statement.bindString(2, userProfile.getLogin());
 
             statement.execute();
             database.setTransactionSuccessful();
@@ -129,13 +109,62 @@ public class TableUserProfiles {
             database.endTransaction();
         }
 
+        cursor.close();
+        database.close();
+    }
+
+    public void signUp() {
+
+        database = dbHelper.getWritableDatabase();
+
+        ContentValues cv = new  ContentValues();
+        cv.put(COLUMN_LOGIN, userProfile.getLogin());
+        cv.put(COLUMN_PASSWORD, userProfile.getPassword());
+        cv.put(COLUMN_FIRST_NAME, userProfile.getFirstName());
+        cv.put(COLUMN_LAST_NAME, userProfile.getLastName());
+        cv.put(COLUMN_HEIGHT, userProfile.getHeight());
+        cv.put(COLUMN_WEIGHT, userProfile.getWeight());
+        cv.put(COLUMN_DATE_OF_BIRTH, userProfile.getDateOfBirth());
+        cv.put(COLUMN_GENDER, userProfile.getGender());
+        cv.put(COLUMN_REMEMBER, userProfile.getRemember());
+        byte[] userPicture = BitmapUtility.getBytes(userProfile.getUserPicture());
+        cv.put(COLUMN_USER_PICTURE, userPicture);
+
+        database.insert(TABLE_NAME, null, cv );
+
         //Запрашиваем id добавившейся строки
         Cursor cursor = database.rawQuery(
                 "SELECT " + COLUMN_ID +
                 " FROM " + TABLE_NAME +
-                " WHERE " + COLUMN_LOGIN + " = \'" +  userProfile.getLogin() + "\'", null);
+                " WHERE " + COLUMN_LOGIN + " = ? ", new String[] { userProfile.getLogin() });
         cursor.moveToFirst();
         userProfile.setId(cursor.getInt(0));
+
+        cursor.close();
+        database.close();
+    }
+
+    public void logOut() {
+        database = dbHelper.getWritableDatabase();
+
+        String updateQuery = "UPDATE " + TABLE_NAME +
+                " SET " + COLUMN_REMEMBER + " = ? " +
+                " WHERE " + COLUMN_LOGIN + " = ? ";
+
+        SQLiteStatement statement = database.compileStatement(updateQuery);
+
+        database.beginTransaction();
+        try {
+            statement.clearBindings();
+
+            statement.bindLong(1, userProfile.getRemember());
+            statement.bindString(2, userProfile.getLogin());
+
+            statement.execute();
+            database.setTransactionSuccessful();
+        } finally {
+            database.endTransaction();
+        }
 
         database.close();
 
@@ -146,7 +175,11 @@ public class TableUserProfiles {
         Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         cursor.moveToFirst();
 
+        byte[] userPicture;
+
         while (!cursor.isAfterLast()) {
+
+            userPicture = cursor.getBlob(indexUserPicture);
 
             Log.d("TABLE_USER", cursor.getInt(indexId) + " " +
                     cursor.getString(indexLogin) + " " +
@@ -157,7 +190,8 @@ public class TableUserProfiles {
                     cursor.getFloat(indexWeight) + " " +
                     cursor.getString(indexDateOfBirth) + " " +
                     cursor.getString(indexGender) + " " +
-                    cursor.getInt(indexRemember));
+                    cursor.getString(indexRemember) + " " +
+                    userPicture.length);
             cursor.moveToNext();
         }
 
@@ -170,7 +204,7 @@ public class TableUserProfiles {
         database = dbHelper.getWritableDatabase();
         Cursor cursor = database.rawQuery(
                 "SELECT * FROM " + TABLE_NAME +
-                        " WHERE " + COLUMN_LOGIN + " = \'" +  login + "\'", null);
+                        " WHERE " + COLUMN_LOGIN + " = ? ", new String[] { login } );
         cursor.moveToFirst();
         if (cursor.getCount() == 0) {
             cursor.close();
@@ -188,8 +222,8 @@ public class TableUserProfiles {
         Cursor cursor = database.rawQuery(
                 "SELECT * FROM " + TABLE_NAME +
                         " WHERE " +
-                        COLUMN_LOGIN + " = \'" +  login + "\'" + " AND " +
-                        COLUMN_PASSWORD + " = \'" +  password + "\'", null);
+                        COLUMN_LOGIN + " = ? AND " +
+                        COLUMN_PASSWORD + " = ? ", new String[] { login, password });
         cursor.moveToFirst();
         if (cursor.getCount() == 0) {
             cursor.close();

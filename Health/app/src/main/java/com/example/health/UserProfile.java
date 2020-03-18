@@ -1,5 +1,6 @@
 package com.example.health;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -21,9 +22,9 @@ public class UserProfile {
     private String gender;
     private String dateOfBirth;
     private int remember;
+    private Bitmap userPicture;
 
     private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-
 
     private static UserProfile instance;
 
@@ -34,6 +35,11 @@ public class UserProfile {
             instance = new UserProfile();	//создать новый объект
         }
         return instance;		// вернуть ранее созданный объект
+    }
+
+    public static UserProfile getNewObject() {
+        instance = new UserProfile();
+        return instance;
     }
 
     public long getId() {
@@ -124,6 +130,14 @@ public class UserProfile {
         this.remember = remember;
     }
 
+    public Bitmap getUserPicture() {
+        return userPicture;
+    }
+
+    public void setUserPicture(Bitmap userPicture) {
+        this.userPicture = userPicture;
+    }
+
     public DateFormat getFormat() {
         return format;
     }
@@ -133,7 +147,7 @@ public class UserProfile {
         Date dob = new Date();
         try {
             dob = format.parse(textDOB);
-        } catch (ParseException e) {
+        } catch (ParseException e) { // Ошибки не возникнет, тк данные при вводе проверяются
             Log.d("EXCEPTION", e.getMessage());
         }
 

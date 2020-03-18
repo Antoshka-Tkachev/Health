@@ -34,7 +34,7 @@ public class ActivityAuthorization extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorization);
 
-        userProfile = UserProfile.getInstance();
+        userProfile = UserProfile.getNewObject();
         tableUserProfiles = new TableUserProfiles(this);
 
         et_login = findViewById(R.id.et_loginAuth);
@@ -68,12 +68,14 @@ public class ActivityAuthorization extends AppCompatActivity {
                 userProfile.setRemember(0);
             }
             tableUserProfiles.signIn();
-            tableUserProfiles.close();
         }
+
+        tableUserProfiles.selectTable();
+        tableUserProfiles.close();
 
         Intent intent = new Intent(this, ActivityHome.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     public void onClickSignUpAuth(View v) {

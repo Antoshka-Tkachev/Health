@@ -6,10 +6,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,9 +18,10 @@ import com.google.android.material.navigation.NavigationView;
 public class ActivityHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private UserProfile userProfile;
-
+    private TableUserProfiles tableUserProfiles;
 
     private TextView tv_nameInHeader;
+    private ImageView iv_userPicture;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -32,6 +34,9 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        userProfile = UserProfile.getInstance();
+        tableUserProfiles = new TableUserProfiles(this);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
@@ -46,13 +51,13 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         transaction.add(R.id.fragmentContainer, fragmentProfile);
         transaction.commit();
 
-
         View header = navigationView.getHeaderView(0);
-        userProfile = UserProfile.getInstance();
         tv_nameInHeader = header.findViewById(R.id.tv_nameInHeader);
+        iv_userPicture = header.findViewById(R.id.iv_userPictureHead);
+
         String nameInHeader = userProfile.getFirstName() + " " + userProfile.getLastName();
         tv_nameInHeader.setText(nameInHeader);
-
+        iv_userPicture.setImageBitmap(userProfile.getUserPicture());
 
     }
 
@@ -63,14 +68,22 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
 
         transaction = getSupportFragmentManager().beginTransaction();
 
-        if(id == R.id.nav_profile) {
+        if (id == R.id.nav_profile) {
             transaction.replace(R.id.fragmentContainer, fragmentProfile);
-        } else if(id == R.id.nav_water) {
+        } else if (id == R.id.nav_water) {
             transaction.replace(R.id.fragmentContainer, fragmentWater);
+        } else if (id == R.id.nav_log_out) {
+            userProfile.setRemember(0);
+            tableUserProfiles.logOut();
+            tableUserProfiles.close();
+
+            Intent intent = new Intent(ActivityHome.this, ActivityAuthorization.class);
+            startActivity(intent);
+
+            finish();
         }
 
         transaction.commit();
-
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

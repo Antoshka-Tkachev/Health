@@ -17,9 +17,9 @@
             app:cardCornerRadius="45dp">
 
             <ImageView
+                android:id="@+id/iv_userPictureHead"
                 android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/heart" />
+                android:layout_height="90dp"/>
 
         </androidx.cardview.widget.CardView>
 
