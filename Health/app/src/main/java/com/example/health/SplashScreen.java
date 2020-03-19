@@ -1,8 +1,10 @@
 package com.example.health;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -22,27 +24,6 @@ public class SplashScreen extends AppCompatActivity {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.heart_size);
         heart.startAnimation(anim);
 
-        new LoadingAuthorizationActivity().execute();
-    }
-
-    class LoadingAuthorizationActivity extends AsyncTask <Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            try {
-                Thread.sleep(2500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return "0";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Intent intent = new Intent(SplashScreen.this, ActivityAuthorization.class);
-            startActivity(intent);
-            finish();
-        }
+        new LaunchingFirstActivity(this).execute();
     }
 }

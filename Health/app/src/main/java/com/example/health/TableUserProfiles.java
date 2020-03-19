@@ -236,6 +236,55 @@ public class TableUserProfiles {
         }
     }
 
+
+    public boolean isRememberedUserExist() {
+        database = dbHelper.getWritableDatabase();
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE " + COLUMN_REMEMBER + " = ? ", new String[] { "1" } );
+
+        cursor.moveToFirst();
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            database.close();
+            return false;
+        } else {
+            cursor.close();
+            database.close();
+            return true;
+        }
+    }
+
+    public void reSignIn() {
+        //Считываем данные в userProfile
+        database = dbHelper.getWritableDatabase();
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE " +
+                        COLUMN_REMEMBER + " = ? ", new String[] { "1" });
+        cursor.moveToFirst();
+
+        userProfile.setId(cursor.getInt(indexId));
+        userProfile.setLogin(cursor.getString(indexLogin));
+        userProfile.setPassword(cursor.getString(indexPassword));
+        userProfile.setFirstName(cursor.getString(indexFirstName));
+        userProfile.setLastName(cursor.getString(indexLastName));
+        userProfile.setHeight(cursor.getFloat(indexHeight));
+        userProfile.setWeight(cursor.getFloat(indexWeight));
+        userProfile.setGender(cursor.getString(indexGender));
+        userProfile.setDateOfBirth(cursor.getString(indexDateOfBirth));
+        userProfile.setRemember(cursor.getInt(indexRemember));
+
+        Bitmap userPicture = BitmapUtility.getImage(cursor.getBlob(indexUserPicture));
+        userProfile.setUserPicture(userPicture);
+
+        int age = userProfile.ageCalculation(userProfile.getDateOfBirth());
+        userProfile.setAge(age);
+
+        cursor.close();
+        database.close();
+    }
+
     public void close() {
         dbHelper.close();
     }

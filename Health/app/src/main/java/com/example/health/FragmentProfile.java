@@ -39,7 +39,16 @@ public class FragmentProfile extends Fragment {
         tv_valueGender = view.findViewById(R.id.tv_valueGender);
         iv_userPicture = view.findViewById(R.id.iv_userPictureProf);
 
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setInitialInformation();
+    }
+
+    private void setInitialInformation() {
         //set'аем занчения из userProfile
         String name = userProfile.getFirstName() + " " + userProfile.getLastName();
         tv_name.setText(name);
@@ -59,8 +68,5 @@ public class FragmentProfile extends Fragment {
         tv_valueAge.setText(String.valueOf(userProfile.getAge()));
         tv_valueGender.setText(String.valueOf(userProfile.getGender()));
         iv_userPicture.setImageBitmap(userProfile.getUserPicture());
-
-        return view;
     }
-
 }

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
-        <activity android:name=".ActivityImageSelection"></activity>
+        <activity
+            android:name=".ActivityImageSelection"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityWaterStatistics"
             android:screenOrientation="portrait"

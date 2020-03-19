@@ -20,6 +20,7 @@
         <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorControlActivated">@color/blueDarkDark</item>
         <item name="colorControlHighlight">@color/blueLight</item>
+        <item name="alertDialogTheme">@style/Dialog</item>
     </style>
 
     <style name="Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
