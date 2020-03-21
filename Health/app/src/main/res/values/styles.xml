@@ -21,7 +21,13 @@
         <item name="colorControlActivated">@color/blueDarkDark</item>
         <item name="colorControlHighlight">@color/blueLight</item>
         <item name="alertDialogTheme">@style/Dialog</item>
+        <item name="android:datePickerDialogTheme">@style/DatePicker</item>
     </style>
+
+    <style name="DatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/blue</item>
+    </style>
+
 
     <style name="Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="android:textColorPrimary">@color/welcome</item>

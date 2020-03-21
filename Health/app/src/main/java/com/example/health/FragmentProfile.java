@@ -45,10 +45,10 @@ public class FragmentProfile extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        setInitialInformation();
+        printInitialInformation();
     }
 
-    private void setInitialInformation() {
+    private void printInitialInformation() {
         //set'аем занчения из userProfile
         String name = userProfile.getFirstName() + " " + userProfile.getLastName();
         tv_name.setText(name);

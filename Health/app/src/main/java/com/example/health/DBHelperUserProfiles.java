@@ -30,6 +30,7 @@ public class DBHelperUserProfiles extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("PRAGMA foreign_keys=on;");
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ( " +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LOGIN + " TEXT, " +
