@@ -26,6 +26,7 @@
 
             <ImageView
                 android:id="@+id/iv_backscape"
+                android:onClick="onClickBackscape"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_backscape"/>
@@ -51,6 +52,8 @@
             android:elevation="5dp">
 
             <ToggleButton
+                android:id="@+id/tbnt_yearWatStat"
+                android:onClick="onClickYearWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -62,6 +65,8 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
+                android:id="@+id/tbnt_monthWatStat"
+                android:onClick="onClickMonthWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,6 +78,8 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
+                android:onClick="onClickWeekWatStat"
+                android:id="@+id/tbnt_weekWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -92,6 +99,8 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/ib_lastWatStat"
+                android:onClick="onClickLastWatStat"
                 android:src="@drawable/ic_chevron_left"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -102,6 +111,7 @@
                 android:background="@color/white"/>
 
             <TextView
+                android:id="@+id/tv_diapasonWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -113,6 +123,8 @@
                 android:textAllCaps="false"/>
 
             <ImageButton
+                android:id="@+id/ib_lastNextStat"
+                android:onClick="onClickNextWatStat"
                 android:src="@drawable/ic_chevron_right"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -131,15 +143,17 @@
             android:orientation="vertical">
 
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="17 марта"
-            android:textSize="20sp"
-            android:textColor="@color/blueDarkDark"/>
+                android:id="@+id/tv_dateWatStat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="17 марта"
+                android:textSize="20sp"
+                android:textColor="@color/blueDarkDark"/>
 
             <TextView
+                android:id="@+id/tv_valueWatStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -150,9 +164,8 @@
 
         </LinearLayout>
 
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bc_water"
+        <FrameLayout
+            android:id="@+id/fl_barChartWatStat"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/white"/>
@@ -188,6 +201,7 @@
                 android:textColor="@color/blueDarkDark"/>
 
             <TextView
+                android:id="@+id/tv_sumWatStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
@@ -197,6 +211,7 @@
                 android:textColor="@color/blueDarkDark"/>
 
             <TextView
+                android:id="@+id/tv_averageWatStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"

@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class TableValueWater {
 
     private final String TABLE_NAME = "ValueWater";
@@ -213,6 +217,127 @@ public class TableValueWater {
         }
 
         database.close();
+    }
+
+    public List<ValueWaterHelper> selectWeekInfo(Calendar start, Calendar end) {
+        List<ValueWaterHelper> listValue = new ArrayList<>();
+        ValueWaterHelper value;
+
+        database = dbHelper.getWritableDatabase();
+
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE (( " +
+                        COLUMN_DAY + " >= ? AND " +
+                        COLUMN_MONTH + " = ? AND " +
+                        COLUMN_YEAR + " = ? ) OR ( " +
+                        COLUMN_DAY + " <= ? AND " +
+                        COLUMN_MONTH + " = ? AND " +
+                        COLUMN_YEAR + " = ? )) AND " +
+                        COLUMN_USER_ID + " = ? " +
+                        "ORDER BY " + COLUMN_MONTH + ", " + COLUMN_DAY,
+                new String[] {
+                        String.valueOf(start.get(Calendar.DAY_OF_MONTH)),
+                        String.valueOf(start.get(Calendar.MONTH) + 1),
+                        String.valueOf(start.get(Calendar.YEAR)),
+                        String.valueOf(end.get(Calendar.DAY_OF_MONTH)),
+                        String.valueOf(end.get(Calendar.MONTH) + 1),
+                        String.valueOf(end.get(Calendar.YEAR)),
+                        String.valueOf(valueWater.getUserId())
+                });
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+
+            value = new ValueWaterHelper();
+            value.setValue(cursor.getInt(indexValue));
+            value.setDay(cursor.getInt(indexDay));
+            value.setMonth(cursor.getInt(indexMonth));
+            value.setYear(cursor.getInt(indexYear));
+            listValue.add(value);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        database.close();
+
+        return listValue;
+    }
+
+    public List<ValueWaterHelper> selectMonthInfo(Calendar date) {
+        List<ValueWaterHelper> listValue = new ArrayList<>();
+        ValueWaterHelper value;
+
+        database = dbHelper.getWritableDatabase();
+
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE " +
+                        COLUMN_MONTH + " = ? AND " +
+                        COLUMN_YEAR + " = ? AND " +
+                        COLUMN_USER_ID + " = ? " +
+                        "ORDER BY " + COLUMN_DAY,
+                new String[] {
+                        String.valueOf(date.get(Calendar.MONTH) + 1),
+                        String.valueOf(date.get(Calendar.YEAR)),
+                        String.valueOf(valueWater.getUserId())
+                });
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+
+            value = new ValueWaterHelper();
+            value.setValue(cursor.getInt(indexValue));
+            value.setDay(cursor.getInt(indexDay));
+            value.setMonth(cursor.getInt(indexMonth));
+            value.setYear(cursor.getInt(indexYear));
+            listValue.add(value);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        database.close();
+
+        return listValue;
+    }
+
+    public List<ValueWaterHelper> selectYearInfo(Calendar date) {
+        List<ValueWaterHelper> listValue = new ArrayList<>();
+        ValueWaterHelper value;
+
+        database = dbHelper.getWritableDatabase();
+
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE " +
+                        COLUMN_YEAR + " = ? AND " +
+                        COLUMN_USER_ID + " = ? " +
+                        "ORDER BY " +
+                        COLUMN_MONTH + ", " + COLUMN_DAY,
+                new String[] {
+                        String.valueOf(date.get(Calendar.YEAR)),
+                        String.valueOf(valueWater.getUserId())
+                });
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+
+            value = new ValueWaterHelper();
+            value.setValue(cursor.getInt(indexValue));
+            value.setDay(cursor.getInt(indexDay));
+            value.setMonth(cursor.getInt(indexMonth));
+            value.setYear(cursor.getInt(indexYear));
+            listValue.add(value);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        database.close();
+
+        return listValue;
     }
 
     public void close() {
