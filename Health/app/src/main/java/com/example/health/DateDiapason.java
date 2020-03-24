@@ -13,7 +13,7 @@ public class DateDiapason {
     private Calendar dateStatByYear;
 
     public DateDiapason() {
-        
+
         date = Calendar.getInstance();
         date.set(Calendar.HOUR_OF_DAY, 12);
         date.set(Calendar.MINUTE, 0);

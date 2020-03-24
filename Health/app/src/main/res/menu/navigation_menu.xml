@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_profile"
             android:title="Профиль" />
         <item
-            android:id="@+id/nav_eat"
-            android:icon="@drawable/ic_eat"
-            android:title="Еда" />
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/ic_food_menu"
+            android:title="Меню" />
         <item
             android:id="@+id/nav_water"
             android:icon="@drawable/ic_water"

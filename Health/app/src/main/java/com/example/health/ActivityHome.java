@@ -21,6 +21,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
     private UserProfile userProfile;
     private TableUserProfiles tableUserProfiles;
 
+    private TextView tv_titleHome;
     private TextView tv_nameInHeader;
     private ImageView iv_userPicture;
 
@@ -29,6 +30,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
 
     private FragmentProfile fragmentProfile;
     private FragmentWater fragmentWater;
+    private FragmentSleep fragmentSleep;
     private FragmentTransaction transaction;
 
     @Override
@@ -39,6 +41,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         userProfile = UserProfile.getInstance();
         tableUserProfiles = new TableUserProfiles(this);
 
+        tv_titleHome = findViewById(R.id.tv_titleHome);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
 
@@ -47,10 +50,12 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
 
         fragmentProfile = new FragmentProfile();
         fragmentWater = new FragmentWater();
+        fragmentSleep = new FragmentSleep();
 
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragmentProfile);
         transaction.commit();
+        tv_titleHome.setText("Профиль");
 
         View header = navigationView.getHeaderView(0);
         tv_nameInHeader = header.findViewById(R.id.tv_nameInHeader);
@@ -70,9 +75,14 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         transaction = getSupportFragmentManager().beginTransaction();
 
         if (id == R.id.nav_profile) {
+            tv_titleHome.setText("Профиль");
             transaction.replace(R.id.fragmentContainer, fragmentProfile);
         } else if (id == R.id.nav_water) {
+            tv_titleHome.setText("Вода");
             transaction.replace(R.id.fragmentContainer, fragmentWater);
+        } else if (id == R.id.nav_sleep) {
+            tv_titleHome.setText("Сон");
+            transaction.replace(R.id.fragmentContainer, fragmentSleep);
         } else if (id == R.id.nav_log_out) {
             userProfile.setRemember(0);
             tableUserProfiles.logOut();
