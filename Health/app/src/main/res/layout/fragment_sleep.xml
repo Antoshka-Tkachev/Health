@@ -21,7 +21,6 @@
         android:background="@drawable/background_container_sleep" >
 
             <TextView
-                android:id="@+id/tv_goalWater"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Время сна"
@@ -30,7 +29,7 @@
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/tv_goalWater1"
+                android:id="@+id/tv_duringSleep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="9:46"
@@ -38,6 +37,7 @@
                 android:textSize="60sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +63,7 @@
                 android:gravity="left"/>
 
             <TextView
-                android:id="@+id/et_time"
+                android:id="@+id/tv_fallingAsleep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -78,7 +78,7 @@
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/et_time1"
+                android:id="@+id/tv_wakingUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -93,7 +93,7 @@
                 android:gravity="center"/>
 
             <Button
-                android:id="@+id/btn_time1"
+                android:id="@+id/btn_saveTimeSleep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -111,7 +111,7 @@
     </LinearLayout>
 
         <Button
-            android:id="@+id/btn_time"
+            android:id="@+id/btn_dateRecordsSleep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -124,7 +124,7 @@
             android:background="@drawable/background_button_sleep"/>
 
         <Button
-            android:id="@+id/btn_statistics"
+            android:id="@+id/btn_statisticsSleep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -137,7 +137,7 @@
             android:background="@drawable/background_button_sleep"/>
 
         <Button
-            android:id="@+id/btn_statistics1"
+            android:id="@+id/btn_recommendationsSleep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

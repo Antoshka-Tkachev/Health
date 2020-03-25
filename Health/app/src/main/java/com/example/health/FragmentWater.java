@@ -70,7 +70,7 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
 
         btn_plus = view.findViewById(R.id.btn_plus);
         btn_minus = view.findViewById(R.id.btn_minus);
-        btn_statistics = view.findViewById(R.id.btn_statistics);
+        btn_statistics = view.findViewById(R.id.btn_statisticsWater);
         btn_data = view.findViewById(R.id.btn_dateRecordsWater);
 
         btn_plus.setOnClickListener(this);
@@ -114,9 +114,9 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
                 onClickMinus();
                 break;
             case R.id.btn_dateRecordsWater:
-                onClickData();
+                onClickDate();
                 break;
-            case R.id.btn_statistics:
+            case R.id.btn_statisticsWater:
                 onClickStatistics();
                 break;
         }
@@ -193,7 +193,7 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
         startActivity(intent);
     }
 
-    private void onClickData() {
+    private void onClickDate() {
         dateDialog = new DatePickerDialog(getActivity(), dateDialogListener, valueWater.getYear(), valueWater.getMonth() - 1, valueWater.getDay());
         dateDialog.show();
     }

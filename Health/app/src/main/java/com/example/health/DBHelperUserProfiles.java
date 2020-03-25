@@ -43,7 +43,8 @@ public class DBHelperUserProfiles extends SQLiteOpenHelper {
                 COLUMN_GENDER + " TEXT, " +
                 COLUMN_REMEMBER + " INTEGER, " +
                 COLUMN_USER_PICTURE + " BLOB, " +
-                "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueWater (user_id)" +
+                "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueWater (user_id), " +
+                "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueSleep (user_id)" +
                 ");");
     }
 
