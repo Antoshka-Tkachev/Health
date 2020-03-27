@@ -16,110 +16,236 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
+public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
 
-    private Activity activityWaterStat;
+    private Activity activitySleepStat;
     private BarChart barChart;
     private TextView tv_sum;
-    private TextView tv_average;
+    private TextView tv_avgFallingAsleep;
+    private TextView tv_avgWakingUp;
+    private TextView tv_avgDuringSleep;
     private TextView tv_date;
     private TextView tv_value;
     private TextView tv_diapason;
 
-    private TableValueWater tableValueWater;
-    private List<ValueWaterHelper> listValue;
+    private TableValueSleep tableValueSleep;
+    private List<ValueSleepHelper> listValue;
     private Calendar[] date;
     private ArrayList<BarEntry> barEntries;
-    private int sum;
-    private int average;
+    private ArrayList<Integer> finalValues;
+    private int sumDuringSleep;
+    private int sumFallingAsleep;
+    private int sumWakingUp;
+    private String sumDuringSleepText;
+    private String avgDuringSleep;
+    private String avgFallingAsleep;
+    private String avgWakingUp;
     private int count;
 
-    LoadingBarChartWater(Activity activityWaterStatistics, Calendar[] date) {
-        this.activityWaterStat = activityWaterStatistics;
-        tableValueWater = new TableValueWater(activityWaterStatistics.getApplicationContext());
+    private final SimpleDateFormat formatCountTime = new SimpleDateFormat("H:mm");
+    private final SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
+    private final SimpleDateFormat formatMinutes = new SimpleDateFormat("mm");
+
+    LoadingBarChartSleep(Activity activitySleepStat, Calendar[] date) {
+        this.activitySleepStat = activitySleepStat;
+        tableValueSleep = new TableValueSleep(activitySleepStat.getApplicationContext());
         this.date = date;
         barEntries = new ArrayList<>();
-        sum = 0;
-        average = 0;
+        finalValues = new ArrayList<>();
+        sumDuringSleep = 0;
+        sumFallingAsleep = 0;
+        sumWakingUp = 0;
+        avgDuringSleep = "";
+        avgFallingAsleep = "";
+        avgWakingUp = "";
         count = 0;
     }
 
     @Override
     protected String doInBackground(String... diapason) {
 
+        Calendar temp = Calendar.getInstance();
         switch (diapason[0]) {
 
             case "Week":
-                listValue = tableValueWater.selectWeekInfo(date[0], date[1]);
+                listValue = tableValueSleep.selectWeekInfo(date[0], date[1]);
 
                 Calendar cursor = Calendar.getInstance();
                 cursor.set(date[0].get(Calendar.YEAR), date[0].get(Calendar.MONTH), date[0].get(Calendar.DAY_OF_MONTH));
 
                 for (int i = 0; i < 7; i++) {
                     barEntries.add(new BarEntry(i, 0));
+                    finalValues.add(0);
                 }
 
                 for (int i = 0; i < 7; i++) {
                     for (int j = 0; j < listValue.size(); j++) {
-                        if (cursor.get(Calendar.DAY_OF_MONTH) == listValue.get(j).getDay() &&
-                            listValue.get(j).getValue() != 0) {
-                            barEntries.set(i, new BarEntry(i, listValue.get(j).getValue()));
-                            sum += listValue.get(j).getValue();
+                        if (cursor.get(Calendar.DAY_OF_MONTH) == listValue.get(j).getDay()) {
+                            barEntries.set(i, new BarEntry(i, (float)listValue.get(j).getDuringSleep() / 60));
+                            finalValues.set(i, listValue.get(j).getDuringSleep());
+
+                            sumDuringSleep += listValue.get(j).getDuringSleep();
+
+                            //если засыпание от 00:00 до 12:00 то для корректного подсчета
+                            //среднего времени засыпания прибавляем 24 часа
+                            if (listValue.get(j).getFallingAsleep() > 12 * 60) {
+                                sumFallingAsleep += listValue.get(j).getFallingAsleep();
+                            } else {
+                                sumFallingAsleep += 24 * 60 + listValue.get(j).getFallingAsleep();
+                            }
+
+                            sumWakingUp += listValue.get(j).getWakingUp();
                             count++;
                         }
                     }
                     cursor.add(Calendar.DAY_OF_MONTH, 1);
                 }
-                average = (int) ((float) sum / (float) count);
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, sumDuringSleep);
+                sumDuringSleepText =
+                        (temp.get(Calendar.DAY_OF_MONTH) - 1) * 24 +
+                        temp.get(Calendar.HOUR_OF_DAY) + ":" +
+                        formatMinutes.format(temp.getTime());
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, (int)((float) sumDuringSleep / (float) count));
+                avgDuringSleep = formatCountTime.format(temp.getTime());
+
+                //если среднее время засыпания получилось больше 24 часов, то вычитаем 24 часа
+                temp.clear();
+                if (((int)((float) sumFallingAsleep / (float) count) >= 24 * 60)) {
+                    temp.set(Calendar.MINUTE, ((int)((float) sumFallingAsleep / (float) count)) - 24 * 60);
+                } else {
+                    temp.set(Calendar.MINUTE, (int)((float) sumFallingAsleep / (float) count));
+                }
+                avgFallingAsleep = formatTime.format(temp.getTime());
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, (int)((float) sumWakingUp / (float) count));
+                avgWakingUp = formatTime.format(temp.getTime());
+
                 return "Week";
 
             case "Month":
-                listValue = tableValueWater.selectMonthInfo(date[0]);
+                listValue = tableValueSleep.selectMonthInfo(date[0]);
 
                 for (int i = 0; i < date[0].getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
                     barEntries.add(new BarEntry(i, 0));
+                    finalValues.add(0);
                 }
 
                 for (int i = 0; i < listValue.size(); i++) {
-                    if (listValue.get(i).getValue() != 0) {
-                        barEntries.set(listValue.get(i).getDay() - 1, new BarEntry(listValue.get(i).getDay() - 1, listValue.get(i).getValue()));
-                        sum += listValue.get(i).getValue();
-                        count++;
+                    barEntries.set(listValue.get(i).getDay() - 1,
+                            new BarEntry(listValue.get(i).getDay() - 1,
+                                    (float) listValue.get(i).getDuringSleep() / 60));
+                    finalValues.set(listValue.get(i).getDay() - 1, listValue.get(i).getDuringSleep());
+
+                    sumDuringSleep += listValue.get(i).getDuringSleep();
+
+                    //если засыпание от 00:00 до 12:00 то для корректного подсчета
+                    //среднего времени засыпания прибавляем 24 часа
+                    if (listValue.get(i).getFallingAsleep() > 12 * 60) {
+                        sumFallingAsleep += listValue.get(i).getFallingAsleep();
+                    } else {
+                        sumFallingAsleep += 24 * 60 + listValue.get(i).getFallingAsleep();
                     }
+
+                    sumWakingUp += listValue.get(i).getWakingUp();
+                    count++;
                 }
-                average = (int) ((float) sum / (float) count);
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, sumDuringSleep);
+                sumDuringSleepText =
+                        (temp.get(Calendar.DAY_OF_MONTH) - 1) * 24 +
+                        temp.get(Calendar.HOUR_OF_DAY) + ":" +
+                        formatMinutes.format(temp.getTime());
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, (int)((float) sumDuringSleep / (float) count));
+                avgDuringSleep = formatCountTime.format(temp.getTime());
+
+                //если среднее время засыпания получилось больше 24 часов, то вычитаем 24 часа
+                temp.clear();
+                if (((int)((float) sumFallingAsleep / (float) count) >= 24 * 60)) {
+                    temp.set(Calendar.MINUTE, ((int)((float) sumFallingAsleep / (float) count)) - 24 * 60);
+                } else {
+                    temp.set(Calendar.MINUTE, (int)((float) sumFallingAsleep / (float) count));
+                }
+                avgFallingAsleep = formatTime.format(temp.getTime());
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, (int)((float) sumWakingUp / (float) count));
+                avgWakingUp = formatTime.format(temp.getTime());
+
                 return "Month";
 
             case "Year":
-                listValue = tableValueWater.selectYearInfo(date[0]);
+                listValue = tableValueSleep.selectYearInfo(date[0]);
 
-                int sums[] = new int[12];
+                int sumsDuringSleep[] = new int[12];
                 int counts[] = new int[12];
 
                 for (int i = 0; i < listValue.size(); i++) {
-                    if (listValue.get(i).getValue() != 0) {
-                        sums[listValue.get(i).getMonth() - 1] += listValue.get(i).getValue();
-                        counts[listValue.get(i).getMonth() - 1]++;
+                    sumsDuringSleep[listValue.get(i).getMonth() - 1] += listValue.get(i).getDuringSleep();
+                    counts[listValue.get(i).getMonth() - 1]++;
 
-                        sum += listValue.get(i).getValue();
-                        count++;
+                    //если засыпание от 00:00 до 12:00 то для корректного подсчета
+                    //среднего времени засыпания прибавляем 24 часа
+                    if (listValue.get(i).getFallingAsleep() > 12 * 60) {
+                        sumFallingAsleep += listValue.get(i).getFallingAsleep();
+                    } else {
+                        sumFallingAsleep += 24 * 60 + listValue.get(i).getFallingAsleep();
                     }
+
+                    sumWakingUp += listValue.get(i).getWakingUp();
+                    sumDuringSleep += listValue.get(i).getDuringSleep();
+                    count++;
                 }
+
                 ArrayList<Integer> averages = new ArrayList<>();
                 for (int i = 0; i < 12; i++) {
-                    averages.add((int) ((float) sums[i] / (float) counts[i]));
-                    barEntries.add(new BarEntry(i, averages.get(i)));
+                    averages.add((int) ((float) sumsDuringSleep[i] / (float) counts[i]));
+                    barEntries.add(new BarEntry(i, (float) averages.get(i) / 60));
+                    finalValues.add(averages.get(i));
                 }
-                average = (int) ((float) sum / (float) count);
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, sumDuringSleep);
+                sumDuringSleepText =
+                        (temp.get(Calendar.DAY_OF_YEAR) - 1) * 24 +
+                        temp.get(Calendar.HOUR_OF_DAY) + ":" +
+                        formatMinutes.format(temp.getTime());
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, (int)((float) sumDuringSleep / (float) count));
+                avgDuringSleep = formatCountTime.format(temp.getTime());
+
+                //если среднее время засыпания получилось больше 24 часов, то вычитаем 24 часа
+                temp.clear();
+                if (((int)((float) sumFallingAsleep / (float) count) >= 24 * 60)) {
+                    temp.set(Calendar.MINUTE, ((int)((float) sumFallingAsleep / (float) count)) - 24 * 60);
+                } else {
+                    temp.set(Calendar.MINUTE, (int)((float) sumFallingAsleep / (float) count));
+                }
+                avgFallingAsleep = formatTime.format(temp.getTime());
+
+                temp.clear();
+                temp.set(Calendar.MINUTE, (int)((float) sumWakingUp / (float) count));
+                avgWakingUp = formatTime.format(temp.getTime());
+
                 return "Year";
 
             default:
                 break;
         }
+
         return "0";
     }
 
@@ -192,21 +318,26 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
     }
 
     private void drawBarChart(String modeBarChart) {
-        barChart = activityWaterStat.findViewById(R.id.bc_water);
+        barChart = activitySleepStat.findViewById(R.id.bc_water);
 
-        tv_sum = activityWaterStat.findViewById(R.id.tv_sumWatStat);
-        tv_average = activityWaterStat.findViewById(R.id.tv_averageWatStat);
-        tv_value = activityWaterStat.findViewById(R.id.tv_valueWatStat);
-        tv_diapason = activityWaterStat.findViewById(R.id.tv_diapasonWatStat);
-        tv_date = activityWaterStat.findViewById(R.id.tv_dateWatStat);
+        tv_diapason = activitySleepStat.findViewById(R.id.tv_diapasonSleepStat);
+        tv_date = activitySleepStat.findViewById(R.id.tv_dateSleepStat);
+        tv_value = activitySleepStat.findViewById(R.id.tv_valueSleepStat);
+        tv_sum = activitySleepStat.findViewById(R.id.tv_sumDuringSleep);
+        tv_avgFallingAsleep = activitySleepStat.findViewById(R.id.tv_averageFallingAsleep);
+        tv_avgWakingUp = activitySleepStat.findViewById(R.id.tv_averageWakingUp);
+        tv_avgDuringSleep = activitySleepStat.findViewById(R.id.tv_averageDuringSleep);
 
-        tv_sum.setText(String.valueOf(sum));
-        tv_average.setText(String.valueOf(average));
+        tv_sum.setText(sumDuringSleepText);
+        tv_avgDuringSleep.setText(avgDuringSleep);
+        tv_avgFallingAsleep.setText(avgFallingAsleep);
+        tv_avgWakingUp.setText(avgWakingUp);
 
         String tv_diapasonText;
         String tv_dateText;
         String tv_valueText;
         BarEntry lastColumn = barEntries.get(barEntries.size() - 1);
+        Calendar temp = Calendar.getInstance();
 
         switch (modeBarChart) {
             case "Week":
@@ -241,7 +372,9 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
                         date[1].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
-                tv_valueText = (int) lastColumn.getY() + " мл";
+                temp.clear();
+                temp.set(Calendar.MINUTE, finalValues.get((int)lastColumn.getX()));
+                tv_valueText = formatCountTime.format(temp.getTime());
                 tv_value.setText(tv_valueText);
 
                 barChart.setOnChartValueSelectedListener(listenerModeWeek);
@@ -257,7 +390,9 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
                         date[0].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
-                tv_valueText = (int) lastColumn.getY() + " мл";
+                temp.clear();
+                temp.set(Calendar.MINUTE, finalValues.get((int)lastColumn.getX()));
+                tv_valueText = formatCountTime.format(temp.getTime());
                 tv_value.setText(tv_valueText);
 
                 barChart.setOnChartValueSelectedListener(listenerModeMonth);
@@ -270,7 +405,9 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
                 tv_dateText = getNameMonth((int)lastColumn.getX()) + " " + date[0].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
-                tv_valueText = (int) lastColumn.getY() + " мл";
+                temp.clear();
+                temp.set(Calendar.MINUTE, finalValues.get((int)lastColumn.getX()));
+                tv_valueText = formatCountTime.format(temp.getTime());
                 tv_value.setText(tv_valueText);
 
                 barChart.setOnChartValueSelectedListener(listenerModeYear);
@@ -290,10 +427,10 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
         Description description = barChart.getDescription(); //подпись(описание)
         description.setEnabled(false); //убирает подпись
 
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Количество выпитой воды в мл"); //название диараммы
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Время сна в часах"); //название диараммы
 
-        barDataSet.setColors(activityWaterStat.getResources().getColor(R.color.blueMiddle));
-        barDataSet.setHighLightColor(activityWaterStat.getResources().getColor(R.color.black));
+        barDataSet.setColors(activitySleepStat.getResources().getColor(R.color.blueMiddle));
+        barDataSet.setHighLightColor(activitySleepStat.getResources().getColor(R.color.black));
         barDataSet.setDrawValues(false);
 
         BarData data = new BarData(barDataSet);
@@ -334,7 +471,10 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
                     cursor.get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
-            String tv_valueText = (int) e.getY() + " мл";
+            Calendar temp = Calendar.getInstance();
+            temp.clear();
+            temp.set(Calendar.MINUTE, finalValues.get((int)e.getX()));
+            String tv_valueText = formatCountTime.format(temp.getTime());
             tv_value.setText(tv_valueText);
 
         }
@@ -354,9 +494,11 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
                     date[0].get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
-            String tv_valueText = (int) e.getY() + " мл";
+            Calendar temp = Calendar.getInstance();
+            temp.clear();
+            temp.set(Calendar.MINUTE, finalValues.get((int)e.getX()));
+            String tv_valueText = formatCountTime.format(temp.getTime());
             tv_value.setText(tv_valueText);
-
         }
 
         @Override
@@ -372,7 +514,10 @@ public class LoadingBarChartWater extends AsyncTask<String, Void, String> {
             String tv_dateText = getNameMonth((int)(e.getX())) + " " + date[0].get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
-            String tv_valueText = (int) e.getY() + " мл";
+            Calendar temp = Calendar.getInstance();
+            temp.clear();
+            temp.set(Calendar.MINUTE, finalValues.get((int)e.getX()));
+            String tv_valueText = formatCountTime.format(temp.getTime());
             tv_value.setText(tv_valueText);
         }
 

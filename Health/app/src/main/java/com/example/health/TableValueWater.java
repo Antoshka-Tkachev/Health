@@ -225,26 +225,50 @@ public class TableValueWater {
 
         database = dbHelper.getWritableDatabase();
 
-        Cursor cursor = database.rawQuery(
+        Cursor cursor;
+        if (start.get(Calendar.MONTH) == end.get(Calendar.MONTH)) {
+            cursor = database.rawQuery(
                 "SELECT * FROM " + TABLE_NAME +
-                        " WHERE (( " +
+                        " WHERE " +
                         COLUMN_DAY + " >= ? AND " +
-                        COLUMN_MONTH + " = ? AND " +
-                        COLUMN_YEAR + " = ? ) OR ( " +
                         COLUMN_DAY + " <= ? AND " +
                         COLUMN_MONTH + " = ? AND " +
-                        COLUMN_YEAR + " = ? )) AND " +
+                        COLUMN_YEAR + " = ?  AND " +
                         COLUMN_USER_ID + " = ? " +
                         "ORDER BY " + COLUMN_MONTH + ", " + COLUMN_DAY,
-                new String[] {
+                new String[]{
                         String.valueOf(start.get(Calendar.DAY_OF_MONTH)),
-                        String.valueOf(start.get(Calendar.MONTH) + 1),
-                        String.valueOf(start.get(Calendar.YEAR)),
                         String.valueOf(end.get(Calendar.DAY_OF_MONTH)),
                         String.valueOf(end.get(Calendar.MONTH) + 1),
                         String.valueOf(end.get(Calendar.YEAR)),
                         String.valueOf(valueWater.getUserId())
                 });
+        } else {
+            cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE (( " +
+                        COLUMN_DAY + " >= ? AND " +
+                        COLUMN_DAY + " <= ? AND " +
+                        COLUMN_MONTH + " = ? AND " +
+                        COLUMN_YEAR + " = ? ) OR (" +
+                        COLUMN_DAY + " >= ? AND " +
+                        COLUMN_DAY + " <= ? AND " +
+                        COLUMN_MONTH + " = ? AND " +
+                        COLUMN_YEAR + " = ? )) AND " +
+                        COLUMN_USER_ID + " = ? " +
+                        "ORDER BY " + COLUMN_MONTH + ", " + COLUMN_DAY,
+                new String[]{
+                        String.valueOf(start.get(Calendar.DAY_OF_MONTH)),
+                        String.valueOf(start.getActualMaximum(Calendar.DAY_OF_MONTH)),
+                        String.valueOf(start.get(Calendar.MONTH) + 1),
+                        String.valueOf(start.get(Calendar.YEAR)),
+                        String.valueOf(1),
+                        String.valueOf(end.get(Calendar.DAY_OF_MONTH)),
+                        String.valueOf(end.get(Calendar.MONTH) + 1),
+                        String.valueOf(end.get(Calendar.YEAR)),
+                        String.valueOf(valueWater.getUserId())
+                });
+        }
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {

@@ -153,6 +153,9 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
         } else if (fallingAsleep == wakingUp) {
             correctly = false;
             errorMessage += "Время сна должно быть больше 0";
+        } else if (fallingAsleep <= 12 * 60 && fallingAsleep > wakingUp) {
+            correctly = false;
+            errorMessage += "Время пробуждения долно быть указано в день засыпания";
         }
 
         if(!correctly) {
@@ -189,8 +192,8 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
     }
 
     private void onClickStatistics() {
-//        Intent intent = new Intent(getActivity(), ActivityWaterStatistics.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(), ActivitySleepStatistics.class);
+        startActivity(intent);
     }
 
     private void onClickFallingAsleep() {
