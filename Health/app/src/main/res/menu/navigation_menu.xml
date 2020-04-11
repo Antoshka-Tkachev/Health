@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_menu"
             android:icon="@drawable/ic_food_menu"
-            android:title="Меню" />
+            android:title="Питание" />
         <item
             android:id="@+id/nav_water"
             android:icon="@drawable/ic_water"
@@ -26,7 +26,7 @@
             android:title="Напоминания" />
     </group>
 
-    <item android:title="Cистема">
+    <item android:title="Система">
         <menu>
             <item
                 android:id="@+id/nav_log_out"

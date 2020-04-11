@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
-
+        <activity
+            android:name=".ActivityRecommendedMenu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityFoodMenuPager"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivitySleepStatistics"
             android:screenOrientation="portrait" />

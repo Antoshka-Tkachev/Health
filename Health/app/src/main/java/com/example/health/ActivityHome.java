@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +30,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
     private FragmentProfile fragmentProfile;
     private FragmentWater fragmentWater;
     private FragmentSleep fragmentSleep;
+    private FragmentFoodMenu fragmentFoodMenu;
     private FragmentTransaction transaction;
 
     @Override
@@ -51,6 +51,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         fragmentProfile = new FragmentProfile();
         fragmentWater = new FragmentWater();
         fragmentSleep = new FragmentSleep();
+        fragmentFoodMenu = new FragmentFoodMenu();
 
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragmentProfile);
@@ -77,6 +78,8 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_profile) {
             tv_titleHome.setText("Профиль");
             transaction.replace(R.id.fragmentContainer, fragmentProfile);
+        } else if (id == R.id.nav_menu) {
+            transaction.replace(R.id.fragmentContainer, fragmentFoodMenu);
         } else if (id == R.id.nav_water) {
             tv_titleHome.setText("Вода");
             transaction.replace(R.id.fragmentContainer, fragmentWater);

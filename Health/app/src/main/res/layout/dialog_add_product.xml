@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:text="Добавление"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/blueDarkDark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="Данного товара нет в базе\nВведите информацию о 100г продукта"
+        android:textSize="20sp"
+        android:textColor="@color/blueDarkDark" />
+
+    <EditText
+        android:id="@+id/et_nameProduct"
+        android:inputType="textVisiblePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/blueDarkDark"
+        android:hint="Название товара" />
+
+    <EditText
+        android:id="@+id/et_calories"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/blueDarkDark"
+        android:hint="кКал" />
+
+    <EditText
+        android:id="@+id/et_protein"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/blueDarkDark"
+        android:hint="Белки" />
+
+    <EditText
+        android:id="@+id/et_fat"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/blueDarkDark"
+        android:hint="Жиры" />
+
+    <EditText
+        android:id="@+id/et_carbohydrate"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/blueDarkDark"
+        android:hint="Улгеводы" />
+
+    <TextView
+        android:id="@+id/tv_errorAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text=""
+        android:textSize="20sp"
+        android:textColor="@color/welcome"
+        android:hint=""/>
+
+</LinearLayout>

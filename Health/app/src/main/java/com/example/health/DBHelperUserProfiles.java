@@ -44,7 +44,8 @@ public class DBHelperUserProfiles extends SQLiteOpenHelper {
                 COLUMN_REMEMBER + " INTEGER, " +
                 COLUMN_USER_PICTURE + " BLOB, " +
                 "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueWater (user_id), " +
-                "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueSleep (user_id)" +
+                "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES ValueSleep (user_id)," +
+                "FOREIGN KEY ( " + COLUMN_ID + " )  REFERENCES UserFoodMenu (user_id)" +
                 ");");
     }
 
