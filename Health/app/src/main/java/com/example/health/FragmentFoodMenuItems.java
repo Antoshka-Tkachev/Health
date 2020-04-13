@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class FragmentFoodMenuItems extends Fragment implements View.OnClickListener {
 
     private ValueUserFoodMenu userFoodMenu;
-    private ArrayList<ValueUserFoodMenuHelper> productsInFoodMenu;
+    private ArrayList<ValueUserFoodMenuHelper> productsInFoodMenu; //продукты на прием пищи
     private ArrayList<String> productNames;
     private ArrayList<String> productNamesHelper;
     private ArrayAdapter<String> adapter;
@@ -191,10 +191,21 @@ public class FragmentFoodMenuItems extends Fragment implements View.OnClickListe
         String nameProduct = String.valueOf(actv_addProduct.getText());
         String weightProduct = String.valueOf(et_weightProduct.getText());
 
+        //проверка введеных данных
+        String errorMessage = "";
+        boolean correctly = true;
+        if (tableUserFoodMenu.isExistProduct(nameProduct, weightProduct, dayOfWeek, modeEating)) {
+            correctly = false;
+            errorMessage = "Данный продукт уже в списке";
+        }
         if (!weightProduct.matches("\\d{1,4}")) {
+            correctly = false;
+            errorMessage = "Вес порции - целое число от 0 до 9999 г.";
+        }
+        if (!correctly) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Ошибка")
-                    .setMessage("Вес порции - целое число от 0 до 9999 г.")
+                    .setMessage(errorMessage)
                     .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
@@ -203,6 +214,7 @@ public class FragmentFoodMenuItems extends Fragment implements View.OnClickListe
             return;
         }
 
+        //Если продукта нет в базе, то добавляем в базу, иначе добавляем сразу в список
         if (!tableProduct.isExistRecord(nameProduct)) {
             showDialogAddNewProduct();
             return;

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".ActivityAddingDayMenu">
+
+    <TextView
+        android:id="@+id/tv_date_adm"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="01.01.0101"
+        android:textColor="@color/blueDarkDark"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textAllCaps="false" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gl_result_adm"
+        android:layout_below="@id/tv_date_adm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:columnCount="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="Белки, г"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="Жиры, г"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+
+        <TextView
+            android:id="@+id/tv_valueProtein_adm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_valueFat_adm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="Углеводы, г"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="кКал"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_valueCarbohydrate_adm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_valueCalories_adm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_columnWeight="1"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:gravity="center" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gl_addProduct_adm"
+        android:layout_below="@id/gl_result_adm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:columnCount="2"
+        android:background="@drawable/background_listview_pager_food_menu">
+
+        <TextView
+            app:layout_columnWeight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вес порции в граммах:"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="17sp"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/et_weightProduct_adm"
+            app:layout_columnWeight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blueDarkDark"
+            android:inputType="number"
+            android:minEms="3"
+            android:maxEms="3"
+            android:hint="100г" />
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_addProduct_adm"
+            app:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите блюдо"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp"
+            android:inputType="textVisiblePassword"
+            android:minEms="6"
+            android:maxEms="6"
+            android:gravity="center"
+            android:completionThreshold="1"/>
+
+        <Button
+            android:id="@+id/btn_addProduct_adm"
+            android:onClick="onClickAddProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:layout_gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="@drawable/background_button_water"
+            android:text="Добавить"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_columnSpan="2" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <ListView
+        android:id="@+id/lv_products_adm"
+        android:layout_below="@id/gl_addProduct_adm"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:background="@drawable/background_listview_pager_food_menu" />
+
+</RelativeLayout>

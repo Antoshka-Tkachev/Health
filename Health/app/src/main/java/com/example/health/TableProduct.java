@@ -28,11 +28,11 @@ public class TableProduct {
 
     private DBHelperProduct dbHelper;
     private SQLiteDatabase database;
-    private ValueUserFoodMenu userFoodMenu;
+    private UserProfile userProfile;
 
     public TableProduct(Context context) {
         dbHelper = new DBHelperProduct(context);
-        userFoodMenu = ValueUserFoodMenu.getInstance();
+        userProfile = UserProfile.getInstance();
 
         database = dbHelper.getWritableDatabase();
         Cursor cursor = database.query(TABLE_NAME,null, null, null, null, null, null);
@@ -56,7 +56,7 @@ public class TableProduct {
                 " WHERE " +
                         COLUMN_USER_ID + " = NULL OR " +
                         COLUMN_USER_ID + " = ?",
-                new String[] { String.valueOf(userFoodMenu.getUserId()) });
+                new String[] { String.valueOf(userProfile.getId()) });
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -86,7 +86,7 @@ public class TableProduct {
                 " WHERE " +
                     COLUMN_USER_ID + " IS NULL OR " +
                     COLUMN_USER_ID + " = ?",
-                new String[] { String.valueOf(userFoodMenu.getUserId()) });
+                new String[] { String.valueOf(userProfile.getId()) });
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             productNames.add(cursor.getString(0));
@@ -109,7 +109,7 @@ public class TableProduct {
                         COLUMN_NAME + " = ?  AND (" +
                         COLUMN_USER_ID + " IS NULL OR " +
                         COLUMN_USER_ID + " = ? ) ",
-                new String[] { productName, String.valueOf(userFoodMenu.getUserId()) });
+                new String[] { productName, String.valueOf(userProfile.getId()) });
         cursor.moveToFirst();
 
         product.setName(cursor.getString(indexName));
@@ -132,7 +132,7 @@ public class TableProduct {
                         COLUMN_NAME + " = ?  AND (" +
                         COLUMN_USER_ID + " IS NULL OR " +
                         COLUMN_USER_ID + " = ? ) ",
-                new String[] { name, String.valueOf(userFoodMenu.getUserId())});
+                new String[] { name, String.valueOf(userProfile.getId())});
         cursor.moveToFirst();
         if (cursor.getCount() == 0) {
             cursor.close();
@@ -154,7 +154,7 @@ public class TableProduct {
         cv.put(COLUMN_PROTEIN, product.getProtein());
         cv.put(COLUMN_FAT, product.getFat());
         cv.put(COLUMN_CARBOHYDRATE, product.getCarbohydrate());
-        cv.put(COLUMN_USER_ID, userFoodMenu.getUserId());
+        cv.put(COLUMN_USER_ID, userProfile.getId());
         database.insert(TABLE_NAME, null, cv);
 
         database.close();

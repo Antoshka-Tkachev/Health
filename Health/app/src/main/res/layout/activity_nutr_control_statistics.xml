@@ -7,7 +7,7 @@
     android:fillViewport="true"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ActivityWaterStatistics">
+    tools:context=".ActivityNutrControlStatistics">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:paddingStart="15dp"
@@ -25,8 +24,8 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/iv_backscapeWatStat"
-                android:onClick="onClickBackscapeWatStat"
+                android:id="@+id/iv_backscapeNCStat"
+                android:onClick="onClickBackscapeNCStat"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_backscape"/>
@@ -52,8 +51,71 @@
             android:elevation="5dp">
 
             <ToggleButton
-                android:id="@+id/tbnt_yearWatStat"
-                android:onClick="onClickYearWatStat"
+                android:id="@+id/tbnt_proteinNCStat"
+                android:onClick="onClickProteinNCStat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="Белки"
+                android:textOff="Белки"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water1"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+            <ToggleButton
+                android:id="@+id/tbnt_fatNCStat"
+                android:onClick="onClickFatNCStat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="Жиры"
+                android:textOff="Жиры"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water2"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+            <ToggleButton
+                android:id="@+id/tbnt_carbohydrateNCStat"
+                android:onClick="onClickСarbohydrateNCStat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="Углев"
+                android:textOff="Углев"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water2"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+            <ToggleButton
+                android:onClick="onClickCaloriesNCStat"
+                android:id="@+id/tbnt_caloriesNCStat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textOn="кКал"
+                android:textOff="кКал"
+                android:textColor="@color/white"
+                android:background="@drawable/background_button_statistic_water3"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:elevation="5dp">
+
+            <ToggleButton
+                android:id="@+id/tbnt_yearNCStat"
+                android:onClick="onClickYearNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,8 +127,8 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:id="@+id/tbnt_monthWatStat"
-                android:onClick="onClickMonthWatStat"
+                android:id="@+id/tbnt_monthNCStat"
+                android:onClick="onClickMonthNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -78,8 +140,8 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:onClick="onClickWeekWatStat"
-                android:id="@+id/tbnt_weekWatStat"
+                android:onClick="onClickWeekNCStat"
+                android:id="@+id/tbnt_weekNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -99,8 +161,8 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/ib_lastWatStat"
-                android:onClick="onClickLastWatStat"
+                android:id="@+id/ib_lastNCStat"
+                android:onClick="onClickLastNCStat"
                 android:src="@drawable/ic_chevron_left"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,7 +173,7 @@
                 android:background="@color/white"/>
 
             <TextView
-                android:id="@+id/tv_diapasonWatStat"
+                android:id="@+id/tv_diapasonNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -123,8 +185,8 @@
                 android:textAllCaps="false"/>
 
             <ImageButton
-                android:id="@+id/ib_nextWatStat"
-                android:onClick="onClickNextWatStat"
+                android:id="@+id/ib_nextNCStat"
+                android:onClick="onClickNextNCStat"
                 android:src="@drawable/ic_chevron_right"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -143,7 +205,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_dateWatStat"
+                android:id="@+id/tv_dateNCStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -153,7 +215,7 @@
                 android:textColor="@color/blueDarkDark"/>
 
             <TextView
-                android:id="@+id/tv_valueWatStat"
+                android:id="@+id/tv_valueNCStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -165,7 +227,7 @@
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/fl_barChartWatStat"
+            android:id="@+id/fl_barChartNCStat"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/white"/>
@@ -201,7 +263,7 @@
                 android:textColor="@color/blueDarkDark"/>
 
             <TextView
-                android:id="@+id/tv_sumWatStat"
+                android:id="@+id/tv_sumNCStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
@@ -211,7 +273,7 @@
                 android:textColor="@color/blueDarkDark"/>
 
             <TextView
-                android:id="@+id/tv_averageWatStat"
+                android:id="@+id/tv_averageNCStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
@@ -221,7 +283,6 @@
                 android:textColor="@color/blueDarkDark"/>
 
         </androidx.gridlayout.widget.GridLayout>
-
 
     </LinearLayout>
 

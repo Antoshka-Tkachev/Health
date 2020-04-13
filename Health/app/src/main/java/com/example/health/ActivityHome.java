@@ -30,7 +30,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
     private FragmentProfile fragmentProfile;
     private FragmentWater fragmentWater;
     private FragmentSleep fragmentSleep;
-    private FragmentFoodMenu fragmentFoodMenu;
+    private FragmentNutritionControl fragmentNutritionControl;
     private FragmentTransaction transaction;
 
     @Override
@@ -51,7 +51,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         fragmentProfile = new FragmentProfile();
         fragmentWater = new FragmentWater();
         fragmentSleep = new FragmentSleep();
-        fragmentFoodMenu = new FragmentFoodMenu();
+        fragmentNutritionControl = new FragmentNutritionControl();
 
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragmentProfile);
@@ -79,7 +79,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
             tv_titleHome.setText("Профиль");
             transaction.replace(R.id.fragmentContainer, fragmentProfile);
         } else if (id == R.id.nav_menu) {
-            transaction.replace(R.id.fragmentContainer, fragmentFoodMenu);
+            transaction.replace(R.id.fragmentContainer, fragmentNutritionControl);
         } else if (id == R.id.nav_water) {
             tv_titleHome.setText("Вода");
             transaction.replace(R.id.fragmentContainer, fragmentWater);

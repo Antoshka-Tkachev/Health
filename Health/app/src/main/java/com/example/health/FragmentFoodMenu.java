@@ -228,6 +228,7 @@ public class FragmentFoodMenu extends Fragment implements View.OnClickListener {
                                 dialog.cancel();
                             }
                         }).show();
+                adapterYourMenus.notifyDataSetChanged();
             }
         }
     );

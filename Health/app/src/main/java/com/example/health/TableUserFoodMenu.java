@@ -134,6 +134,37 @@ public class TableUserFoodMenu {
         }
     }
 
+    public boolean isExistProduct(String nameProduct, String weight, int dayOfWeek, int modeEating) {
+        database = dbHelper.getWritableDatabase();
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM " + TABLE_NAME +
+                        " WHERE " +
+                        COLUMN_NAME + " = ? AND " +
+                        COLUMN_DAY_OF_WEEK + " = ? AND " +
+                        COLUMN_EATING + " = ? AND " +
+                        COLUMN_WEIGHT + " = ? AND " +
+                        COLUMN_PRODUCT_NAME + " = ? AND " +
+                        COLUMN_USER_ID  + " = ? ",
+                new String[] {
+                        userFoodMenu.getName(),
+                        String.valueOf(dayOfWeek),
+                        String.valueOf(modeEating),
+                        weight,
+                        nameProduct,
+                        String.valueOf(userFoodMenu.getUserId())
+                });
+        cursor.moveToFirst();
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            database.close();
+            return false;
+        } else {
+            cursor.close();
+            database.close();
+            return true;
+        }
+    }
+
     public void selectMenu(int numberMenu) {
         database = dbHelper.getWritableDatabase();
 
@@ -241,8 +272,8 @@ public class TableUserFoodMenu {
 
     public void deleteRecord(int position) {
         database = dbHelper.getWritableDatabase();
-        database.delete(TABLE_NAME, COLUMN_NAME + " = ? ",
-                new String[] { userFoodMenu.getNameMenus().get(position) });
+        database.delete(TABLE_NAME, COLUMN_NAME + " = ? AND " + COLUMN_USER_ID  + " = ? ",
+                new String[] { userFoodMenu.getNameMenus().get(position), String.valueOf(userFoodMenu.getUserId()) });
         database.close();
     }
 
@@ -253,13 +284,15 @@ public class TableUserFoodMenu {
                 COLUMN_DAY_OF_WEEK + " = ? AND " +
                 COLUMN_EATING + " = ? AND " +
                 COLUMN_WEIGHT + " = ? AND " +
-                COLUMN_PRODUCT_NAME + " = ?",
+                COLUMN_PRODUCT_NAME + " = ? AND " +
+                COLUMN_USER_ID  + " = ? ",
                 new String[] {
                         userFoodMenu.getName(),
                         String.valueOf(helper.getDayOfWeek()),
                         String.valueOf(helper.getEating()),
                         String.valueOf(helper.getWeight()),
-                        helper.getProductName()
+                        helper.getProductName(),
+                        String.valueOf(userFoodMenu.getUserId())
                 });
         database.close();
     }
