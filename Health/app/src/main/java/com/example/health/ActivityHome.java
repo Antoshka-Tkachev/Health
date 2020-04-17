@@ -30,6 +30,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
     private FragmentProfile fragmentProfile;
     private FragmentWater fragmentWater;
     private FragmentSleep fragmentSleep;
+    private FragmentWeight fragmentWeight;
     private FragmentNutritionControl fragmentNutritionControl;
     private FragmentTransaction transaction;
 
@@ -52,6 +53,7 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         fragmentWater = new FragmentWater();
         fragmentSleep = new FragmentSleep();
         fragmentNutritionControl = new FragmentNutritionControl();
+        fragmentWeight = new FragmentWeight();
 
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragmentProfile);
@@ -86,6 +88,9 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_sleep) {
             tv_titleHome.setText("Сон");
             transaction.replace(R.id.fragmentContainer, fragmentSleep);
+        } else if (id == R.id.nav_weight) {
+            tv_titleHome.setText("Контроль веса");
+            transaction.replace(R.id.fragmentContainer, fragmentWeight);
         } else if (id == R.id.nav_log_out) {
             userProfile.setRemember(0);
             tableUserProfiles.logOut();

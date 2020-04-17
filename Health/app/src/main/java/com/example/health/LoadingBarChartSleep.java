@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
+public class LoadingBarChartSleep extends AsyncTask<Void, Void, Void> {
 
     private Activity activitySleepStat;
     private BarChart barChart;
@@ -46,15 +46,17 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
     private String avgFallingAsleep;
     private String avgWakingUp;
     private int count;
+    private ModePeriod modePeriod;
 
     private final SimpleDateFormat formatCountTime = new SimpleDateFormat("H:mm");
     private final SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
     private final SimpleDateFormat formatMinutes = new SimpleDateFormat("mm");
 
-    LoadingBarChartSleep(Activity activitySleepStat, Calendar[] date) {
+    LoadingBarChartSleep(Activity activitySleepStat, Calendar[] date, ModePeriod modePeriod) {
         this.activitySleepStat = activitySleepStat;
         tableValueSleep = new TableValueSleep(activitySleepStat.getApplicationContext());
         this.date = date;
+        this.modePeriod = modePeriod;
         barEntries = new ArrayList<>();
         finalValues = new ArrayList<>();
         sumDuringSleep = 0;
@@ -67,12 +69,12 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... diapason) {
+    protected Void doInBackground(Void... diapason) {
 
         Calendar temp = Calendar.getInstance();
-        switch (diapason[0]) {
+        switch (modePeriod) {
 
-            case "Week":
+            case WEEK:
                 listValue = tableValueSleep.selectWeekInfo(date[0], date[1]);
 
                 Calendar cursor = Calendar.getInstance();
@@ -130,9 +132,9 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
                 temp.set(Calendar.MINUTE, (int)((float) sumWakingUp / (float) count));
                 avgWakingUp = formatTime.format(temp.getTime());
 
-                return "Week";
+                break;
 
-            case "Month":
+            case MONTH:
                 listValue = tableValueSleep.selectMonthInfo(date[0]);
 
                 for (int i = 0; i < date[0].getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
@@ -184,9 +186,9 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
                 temp.set(Calendar.MINUTE, (int)((float) sumWakingUp / (float) count));
                 avgWakingUp = formatTime.format(temp.getTime());
 
-                return "Month";
+                break;
 
-            case "Year":
+            case YEAR:
                 listValue = tableValueSleep.selectYearInfo(date[0]);
 
                 int sumsDuringSleep[] = new int[12];
@@ -240,84 +242,22 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
                 temp.set(Calendar.MINUTE, (int)((float) sumWakingUp / (float) count));
                 avgWakingUp = formatTime.format(temp.getTime());
 
-                return "Year";
+                break;
 
             default:
                 break;
         }
 
-        return "0";
+        return null;
     }
 
     @Override
-    protected void onPostExecute(String modeBarChart) {
-        super.onPostExecute(modeBarChart);
-        drawBarChart(modeBarChart);
+    protected void onPostExecute(Void result) {
+        super.onPostExecute(result);
+        drawBarChart();
     }
 
-    private String getNameMonthGenitive(int month) {
-        switch (month) {
-            case 0:
-                return "января";
-            case 1:
-                return "февраля";
-            case 2:
-                return "марта";
-            case 3:
-                return "апреля";
-            case 4:
-                return "мая";
-            case 5:
-                return "июня";
-            case 6:
-                return "июля";
-            case 7:
-                return "августа";
-            case 8:
-                return "сентября";
-            case 9:
-                return "октября";
-            case 10:
-                return "ноября";
-            case 11:
-                return "декабря";
-            default:
-                return "";
-        }
-    }
-
-    private String getNameMonth(int month) {
-        switch (month) {
-            case 0:
-                return "Январь";
-            case 1:
-                return "Февраль";
-            case 2:
-                return "Март";
-            case 3:
-                return "Апрель";
-            case 4:
-                return "Май";
-            case 5:
-                return "Июнь";
-            case 6:
-                return "Июль";
-            case 7:
-                return "Август";
-            case 8:
-                return "Сентябрь";
-            case 9:
-                return "Октябрь";
-            case 10:
-                return "Ноябрь";
-            case 11:
-                return "Декабрь";
-            default:
-                return "";
-        }
-    }
-
-    private void drawBarChart(String modeBarChart) {
+    private void drawBarChart() {
         barChart = activitySleepStat.findViewById(R.id.bc_water);
 
         tv_diapason = activitySleepStat.findViewById(R.id.tv_diapasonSleepStat);
@@ -339,36 +279,36 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
         BarEntry lastColumn = barEntries.get(barEntries.size() - 1);
         Calendar temp = Calendar.getInstance();
 
-        switch (modeBarChart) {
-            case "Week":
+        switch (modePeriod) {
+            case WEEK:
                 if (date[0].get(Calendar.YEAR) == date[1].get(Calendar.YEAR)) {
                     if (date[0].get(Calendar.MONTH) == date[1].get(Calendar.MONTH)) {
                         tv_diapasonText =
                                 date[0].get(Calendar.DAY_OF_MONTH) + " - " +
                                 date[1].get(Calendar.DAY_OF_MONTH) + " " +
-                                getNameMonthGenitive(date[1].get(Calendar.MONTH)) + " " +
+                                CalendarText.getNameMonthGenitive(date[1].get(Calendar.MONTH)) + " " +
                                 date[1].get(Calendar.YEAR);
                     } else {
                         tv_diapasonText =
                                 date[0].get(Calendar.DAY_OF_MONTH) + " " +
-                                getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " - " +
+                                CalendarText.getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " - " +
                                 date[1].get(Calendar.DAY_OF_MONTH) + " " +
-                                getNameMonthGenitive(date[1].get(Calendar.MONTH)) + "\n" +
+                                CalendarText.getNameMonthGenitive(date[1].get(Calendar.MONTH)) + "\n" +
                                 date[1].get(Calendar.YEAR);
                     }
                 } else {
                     tv_diapasonText =
                             date[0].get(Calendar.DAY_OF_MONTH) + " " +
-                            getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " " +
+                            CalendarText.getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " " +
                             date[0].get(Calendar.YEAR) + " -\n" +
                             date[1].get(Calendar.DAY_OF_MONTH) + " " +
-                            getNameMonthGenitive(date[1].get(Calendar.MONTH)) + " " +
+                            CalendarText.getNameMonthGenitive(date[1].get(Calendar.MONTH)) + " " +
                             date[1].get(Calendar.YEAR);
                 }
                 tv_diapason.setText(tv_diapasonText);
 
                 tv_dateText = date[1].get(Calendar.DAY_OF_MONTH) + " " +
-                        getNameMonthGenitive(date[1].get(Calendar.MONTH)) + " " +
+                        CalendarText.getNameMonthGenitive(date[1].get(Calendar.MONTH)) + " " +
                         date[1].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
@@ -380,13 +320,13 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
                 barChart.setOnChartValueSelectedListener(listenerModeWeek);
                 break;
 
-            case "Month":
-                tv_diapasonText  = getNameMonth(date[0].get(Calendar.MONTH)) + " " +
+            case MONTH:
+                tv_diapasonText  = CalendarText.getNameMonth(date[0].get(Calendar.MONTH)) + " " +
                         date[0].get(Calendar.YEAR);
                 tv_diapason.setText(tv_diapasonText);
 
                 tv_dateText = (int)(lastColumn.getX() + 1) + " " +
-                        getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " " +
+                        CalendarText.getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " " +
                         date[0].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
@@ -398,11 +338,11 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
                 barChart.setOnChartValueSelectedListener(listenerModeMonth);
                 break;
 
-            case "Year":
+            case YEAR:
                 tv_diapasonText  = String.valueOf(date[0].get(Calendar.YEAR));
                 tv_diapason.setText(tv_diapasonText);
 
-                tv_dateText = getNameMonth((int)lastColumn.getX()) + " " + date[0].get(Calendar.YEAR);
+                tv_dateText = CalendarText.getNameMonth((int)lastColumn.getX()) + " " + date[0].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
                 temp.clear();
@@ -438,7 +378,7 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
         barChart.setData(data);
 
         XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new XAxisDate(modeBarChart));
+        xAxis.setValueFormatter(new XAxisDate(modePeriod));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(12f);
         xAxis.setDrawAxisLine(true);
@@ -467,7 +407,7 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
 
             cursor.add(Calendar.DAY_OF_MONTH, (int)(e.getX()));
             String tv_dateText = cursor.get(Calendar.DAY_OF_MONTH) + " " +
-                    getNameMonthGenitive(cursor.get(Calendar.MONTH)) + " " +
+                    CalendarText.getNameMonthGenitive(cursor.get(Calendar.MONTH)) + " " +
                     cursor.get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
@@ -490,7 +430,7 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
         public void onValueSelected(Entry e, Highlight h) {
 
             String tv_dateText = (int)(e.getX() + 1) + " " +
-                    getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " " +
+                    CalendarText.getNameMonthGenitive(date[0].get(Calendar.MONTH)) + " " +
                     date[0].get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
@@ -511,7 +451,7 @@ public class LoadingBarChartSleep extends AsyncTask<String, Void, String> {
         @Override
         public void onValueSelected(Entry e, Highlight h) {
 
-            String tv_dateText = getNameMonth((int)(e.getX())) + " " + date[0].get(Calendar.YEAR);
+            String tv_dateText = CalendarText.getNameMonth((int)(e.getX())) + " " + date[0].get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
             Calendar temp = Calendar.getInstance();

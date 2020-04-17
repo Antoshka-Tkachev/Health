@@ -285,6 +285,36 @@ public class TableUserProfiles {
         database.close();
     }
 
+
+    public void updateWeight(float weight) {
+        database = dbHelper.getWritableDatabase();
+
+        String updateQuery =
+                "UPDATE " +
+                        TABLE_NAME +
+                        " SET " +
+                        COLUMN_WEIGHT + " = ? " +
+                        "WHERE " +
+                        COLUMN_ID + " = ? ";
+
+        SQLiteStatement statement = database.compileStatement(updateQuery);
+
+        database.beginTransaction();
+        try {
+            statement.clearBindings();
+
+            statement.bindDouble(1, weight);
+            statement.bindLong(2, userProfile.getId());
+
+            statement.execute();
+            database.setTransactionSuccessful();
+        } finally {
+            database.endTransaction();
+        }
+
+        database.close();
+    }
+
     public void close() {
         dbHelper.close();
     }

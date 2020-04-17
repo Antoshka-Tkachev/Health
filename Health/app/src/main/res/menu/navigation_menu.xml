@@ -21,9 +21,9 @@
             android:icon="@drawable/ic_sleep"
             android:title="Сон" />
         <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_notifications"
-            android:title="Напоминания" />
+            android:id="@+id/nav_weight"
+            android:icon="@drawable/ic_weight"
+            android:title="Вес" />
     </group>
 
     <item android:title="Система">

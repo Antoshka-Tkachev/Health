@@ -70,7 +70,7 @@ public class ActivityAuthorization extends AppCompatActivity {
             tableUserProfiles.signIn();
         }
 
-        tableUserProfiles.selectTable();
+        //tableUserProfiles.selectTable();
         tableUserProfiles.close();
 
         Intent intent = new Intent(this, ActivityHome.class);

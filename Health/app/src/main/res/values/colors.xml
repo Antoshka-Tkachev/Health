@@ -12,6 +12,12 @@
     <color name="white">#FFFFFF</color>
     <color name="greyLight">#E6E2E2</color>
     <color name="greyLightLight">#EEEEEE</color>
+    <color name="greyDark">#4C4C4C</color>
     <color name="black">#000000</color>
     <color name="blueLightLight">#D9F1FF</color>
+    <color name="green">#00B230</color>
+    <color name="yellow">#F3D706</color>
+    <color name="orange">#EC7F0A</color>
+    <color name="red">#DB1908</color>
+    <color name="redDark">#9F0505</color>
 </resources>

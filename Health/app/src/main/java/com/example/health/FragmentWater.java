@@ -211,7 +211,7 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
                 dateDialog.cancel();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Ошибка")
-                        .setMessage("Указана дата рождения в будущем")
+                        .setMessage("Указана дата в будущем")
                         .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

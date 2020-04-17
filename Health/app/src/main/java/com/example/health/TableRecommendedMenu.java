@@ -70,7 +70,7 @@ public class TableRecommendedMenu {
 
         while (!cursor.isAfterLast()) {
 
-            Log.d("TABLE_FOOD_MENU", cursor.getInt(indexId) + " " +
+            Log.d("TABLE_RECOMMENDED_MENU", cursor.getInt(indexId) + " " +
                     cursor.getString(indexNumber).replace(',', '.') + " " +
                     cursor.getString(indexName).replace(',', '.') + " " +
                     cursor.getString(indexDayOfWeek).replace(',', '.') + " " +

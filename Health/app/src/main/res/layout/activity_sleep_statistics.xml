@@ -52,7 +52,7 @@
             android:elevation="5dp">
 
             <ToggleButton
-                android:id="@+id/tbnt_yearSleepStat"
+                android:id="@+id/tbtn_yearSleepStat"
                 android:onClick="onClickYearSleepStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:id="@+id/tbnt_monthSleepStat"
+                android:id="@+id/tbtn_monthSleepStat"
                 android:onClick="onClickMonthSleepStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
 
             <ToggleButton
                 android:onClick="onClickWeekSleepStat"
-                android:id="@+id/tbnt_weekSleepStat"
+                android:id="@+id/tbtn_weekSleepStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

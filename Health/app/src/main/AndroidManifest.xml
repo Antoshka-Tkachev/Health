@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
-        <activity android:name=".ActivityNutrControlStatistics"></activity>
-        <activity android:name=".ActivityAddingDayMenu" />
+        <activity
+            android:name=".ActivityWeightStatistics"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityNutrControlStatistics"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActivityAddingDayMenu"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityRecommendedMenu"
             android:screenOrientation="portrait" />

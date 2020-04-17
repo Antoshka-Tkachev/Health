@@ -48,6 +48,7 @@ public class ActivityRegistration extends AppCompatActivity {
 
     private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
     private TableUserProfiles tableUserProfiles;
+    private TableValueWeight tableValueWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class ActivityRegistration extends AppCompatActivity {
 
         userProfile = UserProfile.getInstance();
         tableUserProfiles = new TableUserProfiles(this);
+        tableValueWeight = new TableValueWeight(this);
 
         et_login = findViewById(R.id.et_loginReg);
         et_password = findViewById(R.id.et_passwordReg);
@@ -96,8 +98,9 @@ public class ActivityRegistration extends AppCompatActivity {
         setInfoUserProfile();
 
         tableUserProfiles.signUp();
-        tableUserProfiles.selectTable();
+        //tableUserProfiles.selectTable();
         tableUserProfiles.close();
+        tableValueWeight.insertFirstRecord(userProfile.getWeight(), userProfile.getId());
 
         Intent intent = new Intent(this, ActivityHome.class);
         startActivity(intent);

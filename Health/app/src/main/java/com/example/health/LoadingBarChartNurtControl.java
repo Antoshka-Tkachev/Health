@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
+public class LoadingBarChartNurtControl extends AsyncTask<Void, Void, Void> {
 
-    private Activity activityWaterStat;
+    private Activity activityNutrControlStat;
     private BarChart barChart;
     private TextView tv_sum;
     private TextView tv_average;
@@ -31,19 +31,37 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
     private TextView tv_diapason;
 
     private ModePeriod modePeriod;
-    private TableValueWater tableValueWater;
-    private List<ValueWaterHelper> listValue;
+    private ModeMicroelement modeElement;
+    private TableNutrControl tableNutrControl;
+    private List<ValueUserFoodMenuHelper> listFullValue;
+    private List<Float> listValue;
+    private List<InfoAboutDay> infoAboutDays;
     private Calendar[] date;
     private ArrayList<BarEntry> barEntries;
-    private int sum;
-    private int average;
-    private int count;
+    private float sum;
+    private float average;
+    private float count;
 
-    LoadingBarChartWater(Activity activityWaterStatistics, Calendar[] date, ModePeriod modePeriod) {
-        this.activityWaterStat = activityWaterStatistics;
-        tableValueWater = new TableValueWater(activityWaterStatistics.getApplicationContext());
+    private class InfoAboutDay {
+        private int day;
+        private int month;
+        private int year;
+        private float value;
+
+        public InfoAboutDay(int day, int month, int year, float value) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+            this.value = value;
+        }
+    }
+
+    LoadingBarChartNurtControl(Activity activity, Calendar[] date, ModePeriod modePeriod, ModeMicroelement modeElement) {
+        this.activityNutrControlStat = activity;
+        tableNutrControl = new TableNutrControl(activityNutrControlStat.getApplicationContext());
         this.date = date;
         this.modePeriod = modePeriod;
+        this.modeElement = modeElement;
         barEntries = new ArrayList<>();
         sum = 0;
         average = 0;
@@ -51,12 +69,14 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... diapason) {
+    protected Void doInBackground(Void... params) {
 
         switch (modePeriod) {
 
             case WEEK:
-                listValue = tableValueWater.selectWeekInfo(date[0], date[1]);
+                listFullValue = tableNutrControl.selectWeekInfo(date[0], date[1]);
+                listValue = getListValue();
+                infoAboutDays = getInfoAboutDays();
 
                 Calendar cursor = Calendar.getInstance();
                 cursor.set(date[0].get(Calendar.YEAR), date[0].get(Calendar.MONTH), date[0].get(Calendar.DAY_OF_MONTH));
@@ -66,48 +86,52 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                 }
 
                 for (int i = 0; i < 7; i++) {
-                    for (int j = 0; j < listValue.size(); j++) {
-                        if (cursor.get(Calendar.DAY_OF_MONTH) == listValue.get(j).getDay() &&
-                            listValue.get(j).getValue() != 0) {
-                            barEntries.set(i, new BarEntry(i, listValue.get(j).getValue()));
-                            sum += listValue.get(j).getValue();
+                    for (int j = 0; j < infoAboutDays.size(); j++) {
+                        if (cursor.get(Calendar.DAY_OF_MONTH) == infoAboutDays.get(j).day &&
+                                infoAboutDays.get(j).value != 0) {
+                            barEntries.set(i, new BarEntry(i, infoAboutDays.get(j).value));
+                            sum += infoAboutDays.get(j).value;
                             count++;
                         }
                     }
                     cursor.add(Calendar.DAY_OF_MONTH, 1);
                 }
-                average = (int) ((float) sum / (float) count);
+                average = sum / count;
                 break;
 
             case MONTH:
-                listValue = tableValueWater.selectMonthInfo(date[0]);
+                listFullValue = tableNutrControl.selectMonthInfo(date[0]);
+                listValue = getListValue();
+                infoAboutDays = getInfoAboutDays();
 
                 for (int i = 0; i < date[0].getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
                     barEntries.add(new BarEntry(i, 0));
                 }
 
-                for (int i = 0; i < listValue.size(); i++) {
-                    if (listValue.get(i).getValue() != 0) {
-                        barEntries.set(listValue.get(i).getDay() - 1, new BarEntry(listValue.get(i).getDay() - 1, listValue.get(i).getValue()));
-                        sum += listValue.get(i).getValue();
+                for (int i = 0; i < infoAboutDays.size(); i++) {
+                    if (infoAboutDays.get(i).value != 0) {
+                        barEntries.set(infoAboutDays.get(i).day - 1, new BarEntry(infoAboutDays.get(i).day - 1, infoAboutDays.get(i).value));
+                        sum += infoAboutDays.get(i).value;
                         count++;
                     }
                 }
-                average = (int) ((float) sum / (float) count);
+                average = sum / count;
                 break;
 
             case YEAR:
-                listValue = tableValueWater.selectYearInfo(date[0]);
+                listFullValue = tableNutrControl.selectYearInfo(date[0]);
+                listValue = getListValue();
+                infoAboutDays = getInfoAboutDays();
 
                 int sums[] = new int[12];
                 int counts[] = new int[12];
 
-                for (int i = 0; i < listValue.size(); i++) {
-                    if (listValue.get(i).getValue() != 0) {
-                        sums[listValue.get(i).getMonth() - 1] += listValue.get(i).getValue();
-                        counts[listValue.get(i).getMonth() - 1]++;
+                for (int i = 0; i < infoAboutDays.size(); i++) {
+                    if (infoAboutDays.get(i).value != 0) {
+                        sums[infoAboutDays.get(i).month - 1] += infoAboutDays.get(i).value;
+                        counts[infoAboutDays.get(i).month - 1]++;
 
-                        sum += listValue.get(i).getValue();
+                        sum += infoAboutDays.get(i).value;
                         count++;
                     }
                 }
@@ -116,13 +140,82 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                     averages.add((int) ((float) sums[i] / (float) counts[i]));
                     barEntries.add(new BarEntry(i, averages.get(i)));
                 }
-                average = (int) ((float) sum / (float) count);
+                average = sum / count;
                 break;
 
             default:
                 break;
         }
         return null;
+    }
+
+    private List<InfoAboutDay> getInfoAboutDays() {
+        infoAboutDays = new ArrayList<>();
+
+        if (listFullValue.size() != 0) {
+            int day = listFullValue.get(0).getDayOfMonth();
+            int month = listFullValue.get(0).getMonth();
+            int year = listFullValue.get(0).getYear();
+            float value = 0;
+
+            for (int i = 0; i < listFullValue.size(); i++) {
+                if (day == listFullValue.get(i).getDayOfMonth() &&
+                        month == listFullValue.get(i).getMonth() &&
+                        year == listFullValue.get(i).getYear()) {
+
+                    day = listFullValue.get(i).getDayOfMonth();
+                    month = listFullValue.get(i).getMonth();
+                    year = listFullValue.get(i).getYear();
+
+                    value += listValue.get(i);
+                } else {
+                    infoAboutDays.add(new InfoAboutDay(day, month, year, value));
+
+                    day = listFullValue.get(i).getDayOfMonth();
+                    month = listFullValue.get(i).getMonth();
+                    year = listFullValue.get(i).getYear();
+
+                    value = listValue.get(i);
+                }
+            }
+
+            infoAboutDays.add(new InfoAboutDay(day, month, year, value));
+        }
+
+        return infoAboutDays;
+    }
+
+    private List<Float> getListValue() {
+        listValue = new ArrayList<>();
+        switch (modeElement) {
+            case PROTEIN:
+                for (int i = 0; i < listFullValue.size(); i++) {
+                    listValue.add((float) (listFullValue.get(i).getProductProtein() * listFullValue.get(i).getWeight() / 100));
+                }
+                break;
+
+            case FAT:
+                for (int i = 0; i < listFullValue.size(); i++) {
+                    listValue.add((float) (listFullValue.get(i).getProductFat() * listFullValue.get(i).getWeight() / 100));
+                }
+                break;
+
+            case CARBOHYDRATE:
+                for (int i = 0; i < listFullValue.size(); i++) {
+                    listValue.add((float) (listFullValue.get(i).getProductCarbohyd() * listFullValue.get(i).getWeight() / 100));
+                }
+                break;
+
+            case CALORIES:
+                for (int i = 0; i < listFullValue.size(); i++) {
+                    listValue.add((float) (listFullValue.get(i).getProductCalories()) * listFullValue.get(i).getWeight() / 100);
+                }
+                break;
+
+            default:
+                break;
+        }
+        return listValue;
     }
 
     @Override
@@ -132,16 +225,16 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
     }
 
     private void drawBarChart() {
-        barChart = activityWaterStat.findViewById(R.id.bc_water);
+        barChart = activityNutrControlStat.findViewById(R.id.bc_water);
 
-        tv_sum = activityWaterStat.findViewById(R.id.tv_sumWatStat);
-        tv_average = activityWaterStat.findViewById(R.id.tv_averageWatStat);
-        tv_value = activityWaterStat.findViewById(R.id.tv_valueWatStat);
-        tv_diapason = activityWaterStat.findViewById(R.id.tv_diapasonWatStat);
-        tv_date = activityWaterStat.findViewById(R.id.tv_dateWatStat);
+        tv_sum = activityNutrControlStat.findViewById(R.id.tv_sumNCStat);
+        tv_average = activityNutrControlStat.findViewById(R.id.tv_averageNCStat);
+        tv_value = activityNutrControlStat.findViewById(R.id.tv_valueNCStat);
+        tv_diapason = activityNutrControlStat.findViewById(R.id.tv_diapasonNCStat);
+        tv_date = activityNutrControlStat.findViewById(R.id.tv_dateNCStat);
 
-        tv_sum.setText(String.valueOf(sum));
-        tv_average.setText(String.valueOf(average));
+        tv_sum.setText(String.valueOf((int)sum));
+        tv_average.setText(String.valueOf((int)average));
 
         String tv_diapasonText;
         String tv_dateText;
@@ -181,7 +274,7 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                         date[1].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
-                tv_valueText = (int) lastColumn.getY() + " мл";
+                tv_valueText = String.valueOf((int) lastColumn.getY());
                 tv_value.setText(tv_valueText);
 
                 barChart.setOnChartValueSelectedListener(listenerModeWeek);
@@ -197,7 +290,7 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                         date[0].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
-                tv_valueText = (int) lastColumn.getY() + " мл";
+                tv_valueText = String.valueOf((int) lastColumn.getY());
                 tv_value.setText(tv_valueText);
 
                 barChart.setOnChartValueSelectedListener(listenerModeMonth);
@@ -210,7 +303,7 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                 tv_dateText = CalendarText.getNameMonth((int)lastColumn.getX()) + " " + date[0].get(Calendar.YEAR);
                 tv_date.setText(tv_dateText);
 
-                tv_valueText = (int) lastColumn.getY() + " мл";
+                tv_valueText = String.valueOf((int) lastColumn.getY());
                 tv_value.setText(tv_valueText);
 
                 barChart.setOnChartValueSelectedListener(listenerModeYear);
@@ -230,10 +323,10 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
         Description description = barChart.getDescription(); //подпись(описание)
         description.setEnabled(false); //убирает подпись
 
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Количество выпитой воды в мл"); //название диараммы
+        BarDataSet barDataSet = new BarDataSet(barEntries, getLabel()); //название диараммы
 
-        barDataSet.setColors(activityWaterStat.getResources().getColor(R.color.blueMiddle));
-        barDataSet.setHighLightColor(activityWaterStat.getResources().getColor(R.color.black));
+        barDataSet.setColors(activityNutrControlStat.getResources().getColor(R.color.blueMiddle));
+        barDataSet.setHighLightColor(activityNutrControlStat.getResources().getColor(R.color.black));
         barDataSet.setDrawValues(false);
 
         BarData data = new BarData(barDataSet);
@@ -261,6 +354,20 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
 
     }
 
+    private String getLabel() {
+        switch (modeElement) {
+            case PROTEIN:
+                return "Кол-во потребленных белков в граммах";
+            case FAT:
+                return "Кол-во потребленных жиров в граммах";
+            case CARBOHYDRATE:
+                return "Кол-во потребленных углеводов в граммах";
+            case CALORIES:
+                return "Кол-во потребленных килокалорий";
+        }
+        return "";
+    }
+
     private OnChartValueSelectedListener listenerModeWeek = new OnChartValueSelectedListener() {
         @Override
         public void onValueSelected(Entry e, Highlight h) {
@@ -274,7 +381,7 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                     cursor.get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
-            String tv_valueText = (int) e.getY() + " мл";
+            String tv_valueText = String.valueOf((int) e.getY());
             tv_value.setText(tv_valueText);
 
         }
@@ -294,7 +401,7 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
                     date[0].get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
-            String tv_valueText = (int) e.getY() + " мл";
+            String tv_valueText = String.valueOf((int) e.getY());
             tv_value.setText(tv_valueText);
 
         }
@@ -312,7 +419,7 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
             String tv_dateText = CalendarText.getNameMonth((int)(e.getX())) + " " + date[0].get(Calendar.YEAR);
             tv_date.setText(tv_dateText);
 
-            String tv_valueText = (int) e.getY() + " мл";
+            String tv_valueText = String.valueOf((int) e.getY());
             tv_value.setText(tv_valueText);
         }
 
@@ -321,5 +428,4 @@ public class LoadingBarChartWater extends AsyncTask<Void, Void, Void> {
 
         }
     };
-
 }

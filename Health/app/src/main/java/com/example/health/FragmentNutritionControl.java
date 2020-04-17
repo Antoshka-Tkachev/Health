@@ -145,7 +145,7 @@ public class FragmentNutritionControl extends Fragment implements View.OnClickLi
             }
             if (chooseDate.after(thisDate)) {
                 correctly = false;
-                errorMessage = "Указана дата рождения в будущем";
+                errorMessage = "Указана дата в будущем";
             }
             if (!correctly) {
                 dateDialog.cancel();

@@ -11,11 +11,11 @@ import java.util.Calendar;
 
 public class ActivityWaterStatistics extends AppCompatActivity {
 
-    private ToggleButton tbnt_week;
-    private ToggleButton tbnt_month;
-    private ToggleButton tbnt_year;
+    private ToggleButton tbtn_week;
+    private ToggleButton tbtn_month;
+    private ToggleButton tbtn_year;
     private DateDiapason dateDiapason;
-    private String modeBarChart;
+    private ModePeriod modePeriod;
 
     private FragmentBarChart fragmentBarChart;
     private FragmentTransaction transaction;
@@ -27,12 +27,12 @@ public class ActivityWaterStatistics extends AppCompatActivity {
 
         dateDiapason = new DateDiapason();
 
-        tbnt_week = findViewById(R.id.tbnt_weekWatStat);
-        tbnt_month = findViewById(R.id.tbnt_monthWatStat);
-        tbnt_year = findViewById(R.id.tbnt_yearWatStat);
+        tbtn_week = findViewById(R.id.tbtn_weekWatStat);
+        tbtn_month = findViewById(R.id.tbtn_monthWatStat);
+        tbtn_year = findViewById(R.id.tbtn_yearWatStat);
 
-        tbnt_week.setChecked(true);
-        modeBarChart = "Week";
+        tbtn_week.setChecked(true);
+        modePeriod = ModePeriod.WEEK;
 
         //Устанавливать начальную диаграмму
         fragmentBarChart = new FragmentBarChart();
@@ -42,7 +42,7 @@ public class ActivityWaterStatistics extends AppCompatActivity {
 
         dateDiapason.calculatingWeekDates();
         Calendar[] date  = new Calendar[] { dateDiapason.getDateStartWeek(), dateDiapason.getDateEndWeek() };
-        new LoadingBarChartWater(this, date).execute(modeBarChart);
+        new LoadingBarChartWater(this, date, modePeriod).execute();
     }
 
 
@@ -51,14 +51,14 @@ public class ActivityWaterStatistics extends AppCompatActivity {
     }
 
     public void onClickWeekWatStat(View v) {
-        if (modeBarChart.equals("Week")) {
-            tbnt_week.setChecked(true);
+        if (modePeriod.equals("Week")) {
+            tbtn_week.setChecked(true);
             return;
         }
-        modeBarChart = "Week";
-        tbnt_week.setChecked(true);
-        tbnt_month.setChecked(false);
-        tbnt_year.setChecked(false);
+        modePeriod = ModePeriod.WEEK;
+        tbtn_week.setChecked(true);
+        tbtn_month.setChecked(false);
+        tbtn_year.setChecked(false);
 
         fragmentBarChart = new FragmentBarChart();
         transaction = getSupportFragmentManager().beginTransaction();
@@ -66,18 +66,18 @@ public class ActivityWaterStatistics extends AppCompatActivity {
         transaction.commit();
 
         Calendar[] date  = new Calendar[] { dateDiapason.getDateStartWeek(), dateDiapason.getDateEndWeek() };
-        new LoadingBarChartWater(this, date).execute(modeBarChart);
+        new LoadingBarChartWater(this, date, modePeriod).execute();
     }
 
     public void onClickMonthWatStat(View v) {
-        if (modeBarChart.equals("Month")) {
-            tbnt_month.setChecked(true);
+        if (modePeriod == ModePeriod.MONTH) {
+            tbtn_month.setChecked(true);
             return;
         }
-        modeBarChart = "Month";
-        tbnt_week.setChecked(false);
-        tbnt_month.setChecked(true);
-        tbnt_year.setChecked(false);
+        modePeriod = ModePeriod.MONTH;
+        tbtn_week.setChecked(false);
+        tbtn_month.setChecked(true);
+        tbtn_year.setChecked(false);
 
         fragmentBarChart = new FragmentBarChart();
         transaction = getSupportFragmentManager().beginTransaction();
@@ -85,18 +85,18 @@ public class ActivityWaterStatistics extends AppCompatActivity {
         transaction.commit();
 
         Calendar[] date  = new Calendar[] { dateDiapason.getDateStatByMonth() };
-        new LoadingBarChartWater(this, date).execute(modeBarChart);
+        new LoadingBarChartWater(this, date, modePeriod).execute();
     }
 
     public void onClickYearWatStat(View v) {
-        if (modeBarChart.equals("Year")) {
-            tbnt_year.setChecked(true);
+        if (modePeriod == ModePeriod.YEAR) {
+            tbtn_year.setChecked(true);
             return;
         }
-        modeBarChart = "Year";
-        tbnt_week.setChecked(false);
-        tbnt_month.setChecked(false);
-        tbnt_year.setChecked(true);
+        modePeriod = ModePeriod.YEAR;
+        tbtn_week.setChecked(false);
+        tbtn_month.setChecked(false);
+        tbtn_year.setChecked(true);
 
         fragmentBarChart = new FragmentBarChart();
         transaction = getSupportFragmentManager().beginTransaction();
@@ -104,24 +104,24 @@ public class ActivityWaterStatistics extends AppCompatActivity {
         transaction.commit();
 
         Calendar[] date  = new Calendar[] { dateDiapason.getDateStatByYear() };
-        new LoadingBarChartWater(this, date).execute(modeBarChart);
+        new LoadingBarChartWater(this, date, modePeriod).execute();
     }
 
     public void onClickNextWatStat(View v) {
         Calendar[] date;
-        switch (modeBarChart) {
-            case "Week":
+        switch (modePeriod) {
+            case WEEK:
                 dateDiapason.calculatingNextWeekDates();
-                date  = new Calendar[] { dateDiapason.getDateStartWeek(), dateDiapason.getDateEndWeek() };
-                new LoadingBarChartWater(this, date).execute(modeBarChart);
+                date = new Calendar[] { dateDiapason.getDateStartWeek(), dateDiapason.getDateEndWeek() };
+                new LoadingBarChartWater(this, date, modePeriod).execute();
                 break;
-            case "Month":
-                date  = new Calendar[] { dateDiapason.calculatingNextMonth() };
-                new LoadingBarChartWater(this, date).execute(modeBarChart);
+            case MONTH:
+                date = new Calendar[] { dateDiapason.calculatingNextMonth() };
+                new LoadingBarChartWater(this, date, modePeriod).execute();
                 break;
-            case "Year":
-                date  = new Calendar[] { dateDiapason.calculatingNextYear() };
-                new LoadingBarChartWater(this, date).execute(modeBarChart);
+            case YEAR:
+                date = new Calendar[] { dateDiapason.calculatingNextYear() };
+                new LoadingBarChartWater(this, date, modePeriod).execute();
                 break;
             default:
                 break;
@@ -130,19 +130,19 @@ public class ActivityWaterStatistics extends AppCompatActivity {
 
     public void onClickLastWatStat(View v) {
         Calendar[] date;
-        switch (modeBarChart) {
-            case "Week":
+        switch (modePeriod) {
+            case WEEK:
                 dateDiapason.calculatingLastWeekDates();
-                date  = new Calendar[] { dateDiapason.getDateStartWeek(), dateDiapason.getDateEndWeek() };
-                new LoadingBarChartWater(this, date).execute(modeBarChart);
+                date = new Calendar[] { dateDiapason.getDateStartWeek(), dateDiapason.getDateEndWeek() };
+                new LoadingBarChartWater(this, date, modePeriod).execute();
                 break;
-            case "Month":
-                date  = new Calendar[] { dateDiapason.calculatingLastMonth() };
-                new LoadingBarChartWater(this, date).execute(modeBarChart);
+            case MONTH:
+                date = new Calendar[] { dateDiapason.calculatingLastMonth() };
+                new LoadingBarChartWater(this, date, modePeriod).execute();
                 break;
-            case "Year":
-                date  = new Calendar[] { dateDiapason.calculatingLastYear() };
-                new LoadingBarChartWater(this, date).execute(modeBarChart);
+            case YEAR:
+                date = new Calendar[] { dateDiapason.calculatingLastYear() };
+                new LoadingBarChartWater(this, date, modePeriod).execute();
                 break;
             default:
                 break;

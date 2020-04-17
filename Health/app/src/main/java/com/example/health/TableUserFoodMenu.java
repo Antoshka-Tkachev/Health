@@ -95,7 +95,7 @@ public class TableUserFoodMenu {
 
         while (!cursor.isAfterLast()) {
 
-            Log.d("TABLE_RECOMMENDED_MENU", cursor.getInt(indexId) + " " +
+            Log.d("TABLE_FOOD_MENU", cursor.getInt(indexId) + " " +
                     cursor.getInt(indexNumber) + " " +
                     cursor.getString(indexName) + " " +
                     cursor.getInt(indexDayOfWeek) + " " +

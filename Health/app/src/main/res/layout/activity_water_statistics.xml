@@ -52,7 +52,7 @@
             android:elevation="5dp">
 
             <ToggleButton
-                android:id="@+id/tbnt_yearWatStat"
+                android:id="@+id/tbtn_yearWatStat"
                 android:onClick="onClickYearWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:id="@+id/tbnt_monthWatStat"
+                android:id="@+id/tbtn_monthWatStat"
                 android:onClick="onClickMonthWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
 
             <ToggleButton
                 android:onClick="onClickWeekWatStat"
-                android:id="@+id/tbnt_weekWatStat"
+                android:id="@+id/tbtn_weekWatStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

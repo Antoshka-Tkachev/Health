@@ -51,7 +51,7 @@
             android:elevation="5dp">
 
             <ToggleButton
-                android:id="@+id/tbnt_proteinNCStat"
+                android:id="@+id/tbtn_proteinNCStat"
                 android:onClick="onClickProteinNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:id="@+id/tbnt_fatNCStat"
+                android:id="@+id/tbtn_fatNCStat"
                 android:onClick="onClickFatNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -77,8 +77,8 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:id="@+id/tbnt_carbohydrateNCStat"
-                android:onClick="onClickСarbohydrateNCStat"
+                android:id="@+id/tbtn_carbohydrateNCStat"
+                android:onClick="onClickCarbohydrateNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -91,7 +91,7 @@
 
             <ToggleButton
                 android:onClick="onClickCaloriesNCStat"
-                android:id="@+id/tbnt_caloriesNCStat"
+                android:id="@+id/tbtn_caloriesNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,7 +114,7 @@
             android:elevation="5dp">
 
             <ToggleButton
-                android:id="@+id/tbnt_yearNCStat"
+                android:id="@+id/tbtn_yearNCStat"
                 android:onClick="onClickYearNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                 android:textAllCaps="false"/>
 
             <ToggleButton
-                android:id="@+id/tbnt_monthNCStat"
+                android:id="@+id/tbtn_monthNCStat"
                 android:onClick="onClickMonthNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
 
             <ToggleButton
                 android:onClick="onClickWeekNCStat"
-                android:id="@+id/tbnt_weekNCStat"
+                android:id="@+id/tbtn_weekNCStat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -237,7 +237,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-
+            android:layout_marginBottom="20dp"
             app:columnCount="2"
             app:orientation="horizontal"
             android:elevation="5dp">
@@ -248,7 +248,7 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="Всего (мл)"
+                android:text="Всего"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -258,7 +258,7 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="Среднее (мл)"
+                android:text="Среднее"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
