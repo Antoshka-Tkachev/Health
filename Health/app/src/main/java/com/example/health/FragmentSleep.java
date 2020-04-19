@@ -138,6 +138,7 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
                 onClickStatistics();
                 break;
             case R.id.btn_recommendationsSleep:
+                onClickRecommendations();
                 break;
         }
     }
@@ -211,6 +212,11 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
     private void onClickDate() {
         dateDialog = new DatePickerDialog(getActivity(), dateDialogListener, valueSleep.getYear(), valueSleep.getMonth() - 1, valueSleep.getDay());
         dateDialog.show();
+    }
+
+    private void onClickRecommendations() {
+        Intent intent = new Intent(getActivity(), ActivityRecommendationSleep.class);
+        startActivity(intent);
     }
 
     private DatePickerDialog.OnDateSetListener dateDialogListener = new DatePickerDialog.OnDateSetListener() {

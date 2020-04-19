@@ -80,4 +80,19 @@
         <item name="android:textColorPrimary">@color/white</item>
     </style>
 
+    <style name="SplashScreenLauncher.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SplashScreenLauncher.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/blue</item>
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
+    <style name="SplashScreenLauncher.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:background">@color/blue</item>
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
 </resources>
