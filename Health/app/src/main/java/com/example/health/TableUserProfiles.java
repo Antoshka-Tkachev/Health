@@ -315,6 +315,52 @@ public class TableUserProfiles {
         database.close();
     }
 
+    public void updateRecord() {
+        database = dbHelper.getWritableDatabase();
+
+        String updateQuery =
+                "UPDATE " +
+                        TABLE_NAME +
+                        " SET " +
+                        COLUMN_LOGIN + " = ?, " +
+                        COLUMN_PASSWORD + " = ?, " +
+                        COLUMN_FIRST_NAME + " = ?, " +
+                        COLUMN_LAST_NAME +  " = ?, " +
+                        COLUMN_HEIGHT + " = ?, " +
+                        COLUMN_WEIGHT + " = ?, " +
+                        COLUMN_DATE_OF_BIRTH + " = ?, " +
+                        COLUMN_GENDER + " = ?, " +
+                        COLUMN_USER_PICTURE + " = ? " +
+                        "WHERE " +
+                        COLUMN_ID + " = ? ";
+
+        SQLiteStatement statement = database.compileStatement(updateQuery);
+
+        database.beginTransaction();
+        try {
+            statement.clearBindings();
+
+            statement.bindString(1, userProfile.getLogin());
+            statement.bindString(2, userProfile.getPassword());
+            statement.bindString(3, userProfile.getFirstName());
+            statement.bindString(4, userProfile.getLastName());
+            statement.bindDouble(5, userProfile.getHeight());
+            statement.bindDouble(6, userProfile.getWeight());
+            statement.bindString(7, userProfile.getDateOfBirth());
+            statement.bindString(8, userProfile.getGender());
+            byte[] userPicture = BitmapUtility.getBytes(userProfile.getUserPicture());
+            statement.bindBlob(9, userPicture);
+            statement.bindLong(10, userProfile.getId());
+
+            statement.execute();
+            database.setTransactionSuccessful();
+        } finally {
+            database.endTransaction();
+        }
+
+        database.close();
+    }
+
     public void close() {
         dbHelper.close();
     }

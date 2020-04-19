@@ -1,6 +1,7 @@
 package com.example.health;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ public class FragmentProfile extends Fragment {
     private TextView tv_valueWeight;
     private TextView tv_valueGender;
     private ImageView iv_userPicture;
+    private ImageView iv_settingsProfile;
 
     public FragmentProfile() { }
 
@@ -38,6 +40,7 @@ public class FragmentProfile extends Fragment {
         tv_valueWeight = view.findViewById(R.id.tv_valueWeight);
         tv_valueGender = view.findViewById(R.id.tv_valueGender);
         iv_userPicture = view.findViewById(R.id.iv_userPictureProf);
+        iv_settingsProfile  = getActivity().findViewById(R.id.iv_settingsProfile);
 
         return view;
     }
@@ -46,6 +49,12 @@ public class FragmentProfile extends Fragment {
     public void onResume() {
         super.onResume();
         printInitialInformation();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        iv_settingsProfile.setVisibility(View.GONE);
     }
 
     private void printInitialInformation() {
@@ -68,5 +77,14 @@ public class FragmentProfile extends Fragment {
         tv_valueAge.setText(String.valueOf(userProfile.getAge()));
         tv_valueGender.setText(String.valueOf(userProfile.getGender()));
         iv_userPicture.setImageBitmap(userProfile.getUserPicture());
+        iv_settingsProfile.setVisibility(View.VISIBLE);
+        iv_settingsProfile.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ActivitySettingsProfile.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }

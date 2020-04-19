@@ -35,7 +35,7 @@ public class AdapterRecomMenuForDays extends RecyclerView.Adapter<RecyclerView.V
             view = inflater.inflate(R.layout.item_food_menu_for_day, parent, false);
             holder = new AdapterRecomMenuForDays.DayMenusViewHolder(view);
         } else {
-            view = inflater.inflate(R.layout.item_food_menu_result, parent, false);
+            view = inflater.inflate(R.layout.item_food_recom_menu_result, parent, false);
             holder = new AdapterRecomMenuForDays.ResultMenusViewHolder(view);
         }
         return holder;

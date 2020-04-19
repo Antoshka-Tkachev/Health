@@ -64,10 +64,14 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
         tv_nameInHeader = header.findViewById(R.id.tv_nameInHeader);
         iv_userPicture = header.findViewById(R.id.iv_userPictureHead);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         String nameInHeader = userProfile.getFirstName() + " " + userProfile.getLastName();
         tv_nameInHeader.setText(nameInHeader);
         iv_userPicture.setImageBitmap(userProfile.getUserPicture());
-
     }
 
     @Override

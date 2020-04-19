@@ -15,18 +15,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:orientation="horizontal"
             android:background="@color/blue"
             android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/iv_menu"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:onClick="onClickMenu"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -35,15 +36,26 @@
 
             <TextView
                 android:id="@+id/tv_titleHome"
+                android:layout_toRightOf="@+id/iv_menu"
+                android:layout_toEndOf="@+id/iv_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="Здоровье"
                 android:textColor="@color/white"
-                android:textSize="23sp"/>
+                android:textSize="23sp" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_settingsProfile"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create"
+                android:tint="@color/white" />
+
+        </RelativeLayout>
 
         <FrameLayout
             android:id="@+id/fragmentContainer"

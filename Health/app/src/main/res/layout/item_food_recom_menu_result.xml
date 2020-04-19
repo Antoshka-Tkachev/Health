@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/background_listview_pager_food_menu">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Итог за неделю"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/blueDarkDark" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:columnCount="3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="кКал"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_calories_ifmr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="start"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text=""
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Белки"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_protein_ifmr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="start"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="г."
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Жиры"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_fat_ifmr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="start"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="г."
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Углеводы"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_carbohydrate_ifmr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="start"
+            android:text="0"
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="г."
+            android:textColor="@color/blueDarkDark"
+            android:textSize="20sp" />
+
+    </GridLayout>
+
+</LinearLayout>

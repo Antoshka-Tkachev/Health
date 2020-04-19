@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
         <activity
+            android:name=".ActivitySettingsProfile"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ActivityWeightStatistics"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityNutrControlStatistics"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityAddingDayMenu"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityRecommendedMenu"
             android:screenOrientation="portrait" />
