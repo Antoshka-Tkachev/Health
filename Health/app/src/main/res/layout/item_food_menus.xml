@@ -12,7 +12,7 @@
         android:layout_margin="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:text="text"
+        android:text="@string/text"
         android:textSize="25sp"
         android:textColor="@color/blue"
         android:gravity="center"

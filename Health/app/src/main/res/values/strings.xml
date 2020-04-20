@@ -1,8 +1,123 @@
 <resources>
     <string name="app_name">Здоровье</string>
-    <string name="welcome">Добро пожаловать!</string>
-    <string name="entrance">Вход</string>
     <string name="title_activity_recommendation_sleep">Рекомендации</string>
+
+    <!--ActivityAddingDayMenu-->
+    <string name="date">Дата</string>
+    <string name="protein_g">Белки, г</string>
+    <string name="fat_g">Жиры, г</string>
+    <string name="carbohydrate_g">Углеводы, г</string>
+    <string name="zero">0</string>
+    <string name="calories">кКал</string>
+    <string name="weightProduct">Вес порции в граммах:</string>
+    <string name="_100g">100г</string>
+    <string name="enterProduct">Введите блюдо</string>
+    <string name="add">Добавить</string>
+
+    <!--ActivityAuthorization-->
+    <string name="entrance">Вход</string>
+    <string name="loginAuth">Логин:</string>
+    <string name="passwordAuth">Пароль:</string>
+    <string name="enterLogin">Введите логин</string>
+    <string name="enterPassword">Введите пароль</string>
+    <string name="remember">Запомнить</string>
+    <string name="signIn">Войти</string>
+    <string name="signUp">Зарегестрироваться</string>
+
+    <!--ActivityHome-->
+    <string name="health">Здоровье</string>
+
+    <!--ActivityImageSelection-->
+    <string name="imageSelection">Выбор картинки</string>
+    <string name="downloadFromGallery">Загрузить из галереи</string>
+    <string name="save">Сохранить</string>
+
+    <!--ActivityNutrControlStatistics-->
+    <string name="statisticsNutr">Статистика</string>
+    <string name="protein">Белки</string>
+    <string name="fat">Жиры</string>
+    <string name="carbohydrate">Углев</string>
+    <string name="year">Год</string>
+    <string name="month">Месяц</string>
+    <string name="week">Неделя</string>
+    <string name="diapason">10-17 марта 2020</string>
+    <string name="dateExample">17 марта</string>
+    <string name="valueWater">1234 мл</string>
+    <string name="total">Всего</string>
+    <string name="average">Среднее</string>
+    <string name="_20_000">20 000</string>
+    <string name="_1950">1950</string>
+
+    <!--ActivityRecommendedMenu-->
+    <string name="title">Название</string>
+
+    <!--ActivityRegistration-->
+    <string name="fillOutAProfile">Заполните профиль</string>
+    <string name="imageSelectionReg">Выберите картинку</string>
+    <string name="loginReg">Логин</string>
+    <string name="passwordReg">Пароль</string>
+    <string name="replayPasswordReg">Повторите пароль</string>
+    <string name="firstNameReg">Имя</string>
+    <string name="lastNameReg">Фамилия</string>
+    <string name="heightReg">Рост в см</string>
+    <string name="weightReg">Вес в кг</string>
+    <string name="dateOfBirthReg">Дата рождения дд.мм.гггг</string>
+    <string name="genderReg">Пол</string>
+    <string name="genderBoyReg">Мужской</string>
+    <string name="genderGirlReg">Женский</string>
+    <string name="signUpReg">Зарегестрироваться</string>
+
+    <!--ActivitySettingsProfile-->
+    <string name="editing">Редактирование</string>
+    <string name="imageSelectionSet">Выберите картинку</string>
+    <string name="loginSetProf">Логин</string>
+    <string name="passwordSetProf">Пароль</string>
+    <string name="replayPasswordSetProf">Повторите пароль</string>
+    <string name="firstNameSetProf">Имя</string>
+    <string name="lastNameSetProf">Фамилия</string>
+    <string name="heightSetProf">Рост в см</string>
+    <string name="weightSetProf">Вес в кг</string>
+    <string name="dateOfBirthSetProf">Дата рождения дд.мм.гггг</string>
+    <string name="genderSetProf">Пол</string>
+    <string name="genderBoySetProf">Мужской</string>
+    <string name="genderGirlSetProf">Женский</string>
+    <string name="saveSetProf">Сохранить</string>
+
+    <!--ActivitySleepStatistics-->
+    <string name="statisticsSleep">Статистика</string>
+    <string name="yearSleepStat">Год</string>
+    <string name="monthSleepStat">Месяц</string>
+    <string name="weekSleepStat">Неделя</string>
+    <string name="diapasonSleepStat">10-17 марта 2020</string>
+    <string name="dateSleepStat">17 марта</string>
+    <string name="valueSleepStat">1234 мл</string>
+    <string name="totalSleepStat">Всего</string>
+    <string name="averageSleepStat">Среднее</string>
+    <string name="_20_000SleepStat">20 000</string>
+    <string name="_1950SleepStat">1950</string>
+    <string name="averageFallingAsleep">Среднее время\nзасыпания</string>
+    <string name="averageWakingUp">Среднее время\nпробуждения</string>
+
+    <!--ActivitySplashScreen-->
+    <string name="welcome">Добро пожаловать!</string>
+
+    <!--ActivityWaterStatistics-->
+    <string name="statisticsWater">Статистика</string>
+    <string name="yearWatStat">Год</string>
+    <string name="monthWatStat">Месяц</string>
+    <string name="weekWatStat">Неделя</string>
+    <string name="diapasonWatStat">10-17 марта 2020</string>
+    <string name="dateWatStat">17 марта</string>
+    <string name="valueWatStat">1234 мл</string>
+    <string name="totalWaterStat">Всего (мл)</string>
+    <string name="averageWaterStat">Среднее (мл)</string>
+    <string name="_20_000WatStat">20 000</string>
+    <string name="_1950WatStat">1950</string>
+
+    <!--ActivityWeightStatistics-->
+    <string name="weightStatistics">Статистика</string>
+
+    <!--ContentActivityRecommendationSleep-->
     <string name="recommendation_sleep">
         Способы борьбы с бессоницей:\n\n
         1.	Ведите дневник.\nЗаписывайте в нем, сколько и когда вы спали, уровень усталости днем и другие симптомы. Это поможет понять, что стоит поменять в своем распорядке, а также, в крайнем случае, может пригодиться лечащему врачу.\n\n
@@ -73,5 +188,157 @@
 
     </string>
 
+    <!--DialogAddProduct-->
+    <string name="adding">Добавление</string>
+    <string name="informationAddProduct">Данного товара нет в базе Введите информацию о 100г продукта</string>
+    <string name="nameProduct">Название товара</string>
+    <string name="proteinAddProduct">Белки</string>
+    <string name="fatAddProduct">Жиры</string>
+    <string name="carbohydrateAddProduct">Улгеводы</string>
+    <string name="caloriesAddProduct">кКал</string>
+
+    <!--DialogInformationAboutProduct-->
+    <string name="informationAboutProduct">Информация</string>
+    <string name="nameProduct_dialog">Название</string>
+    <string name="infoCaloriesPFC_dialog">Характеристики</string>
+
+    <!--DialogUpdateNameMenu-->
+    <string name="edited">Редактировать</string>
+    <string name="newNameMenu">Введите новое название меню</string>
+
+    <!--DialogUpdateWeight-->
+    <string name="editedUpdateWeight">Редактировать</string>
+    <string name="enterYourWeight">Введите свой вес</string>
+
+    <!--FragmentCalorieCalculation-->
+    <string name="titleCalorieCalculation">Расчитайте суточную норму калорий</string>
+    <string name="height_cc">Рост в см</string>
+    <string name="weight_cc">Вес в кг</string>
+    <string name="age_cc">Возраст</string>
+    <string name="gender_cc">Пол</string>
+    <string name="genderBoy_cc">Мужской</string>
+    <string name="genderGirl_cc">Женский</string>
+    <string name="calculate_cc">Рассчитать</string>
+    <string name="nutritionControl_cc">Контроль</string>
+    <string name="foodMenu_cc">Меню</string>
+    <string name="calculator_cc">Калькулятор</string>
+
+    <!--FragmentFoodMenu-->
+    <string name="createMenu">Создать меню</string>
+    <string name="yourMenus">Ваши\nменю</string>
+    <string name="recommendedMenus">Рекомендуемые\nменю</string>
+    <string name="nutritionControl_fm">Контроль</string>
+    <string name="foodMenu_fm">Меню</string>
+    <string name="calorieCalculator_fm">Калькулятор</string>
+
+    <!--FragmentFoodMenuFirstItem-->
+    <string name="titleFoodMenuFirstItem">Название</string>
+
+    <!--FragmentFoodMenuItems-->
+    <string name="dayOfWeek_fmp">Понедельник</string>
+    <string name="breakfast_fmp">Завтрак</string>
+    <string name="lunch_fmp">Обед</string>
+    <string name="dinner_fmp">Ужин</string>
+    <string name="protein_fmp">Белки, г</string>
+    <string name="fat_fmp">Жиры, г</string>
+    <string name="valueProtein_fmp">0</string>
+    <string name="valueFat_fmp" />
+    <string name="carbohydrate_fmp">Углеводы, г</string>
+    <string name="calories_fmp">кКал</string>
+    <string name="valueCarbohydrate_fmp">0</string>
+    <string name="valueCalories_fmp">0</string>
+    <string name="weightProduct_fmp">Вес порции в граммах:</string>
+    <string name="_100g_fmp">100г</string>
+    <string name="addProduct_fmp">Введите блюдо</string>
+    <string name="btn_addProduct_fmp">Добавить</string>
+
+    <!--FragmentNutritionControl-->
+    <string name="addDay_NutCont">Добавить день</string>
+    <string name="statisticsNutCont">Статистика</string>
+    <string name="control_nutrControl">Контроль</string>
+    <string name="foodMenu_NutCont">Меню</string>
+    <string name="calorieCalculator_NutCont">Калькулятор</string>
+
+    <!--FragmentProfile-->
+    <string name="nameProfile">Имя Фамилия</string>
+    <string name="heightProfile">Рост</string>
+    <string name="weightProfile">Вес</string>
+    <string name="ageProfile">Возраст</string>
+    <string name="genderProfile">Пол</string>
+    <string name="valueGender">М/Ж</string>
+    <string name="valueAge">0</string>
+    <string name="valueWeight">0</string>
+    <string name="valueHeight">0</string>
+
+    <!--FragmentSleep-->
+    <string name="timeSleep">Время сна</string>
+    <string name="duringSleep">9:46</string>
+    <string name="indicate">Укажите:</string>
+    <string name="fallingAsleep">Время засыпания</string>
+    <string name="wakingUp">Время пробуждения</string>
+    <string name="saveTimeSleep">Сохранить</string>
+    <string name="dateRecordsSleep">Дата</string>
+    <string name="statisticsSleepFragment">Статистика</string>
+    <string name="recommendationsSleep">Рекомендации</string>
+
+    <!--FragmentWater-->
+    <string name="goalWater">Цель: 0/2000</string>
+    <string name="minus">—</string>
+    <string name="volumeWater">мл</string>
+    <string name="plus">+</string>
+    <string name="dateRecordsWater">Дата</string>
+    <string name="statisticsWaterFragment">Статистика</string>
+
+    <!--FragmentWeight-->
+    <string name="valueWeightInFragment">123,5</string>
+    <string name="kilograms">кг</string>
+    <string name="statisticsWeightFragment">Статистика</string>
+
+    <!--ItemFoodMenuForDay-->
+    <string name="dayOfWeek_ifmfd">День недели</string>
+    <string name="breakfast_ifmfd">Завтрак:</string>
+    <string name="valueBreakfast_ifmfd">Прием пищи</string>
+    <string name="lunch_ifmfd">Обед:</string>
+    <string name="valueLunch_ifmfd">Прием пищи</string>
+    <string name="dinner_ifmfd">Ужин:</string>
+    <string name="valueDinner_ifmfd">Прием пищи</string>
+    <string name="result_ifmfd">Итог:</string>
+    <string name="calories_ifmfd">кКал</string>
+    <string name="valueCalories_ifmfd">0</string>
+    <string name="protein_ifmfd">Белки</string>
+    <string name="valueProtein_ifmfd">0</string>
+    <string name="gram">г.</string>
+    <string name="fat_ifmfd">Жиры</string>
+    <string name="valueFat_ifmfd">0</string>
+    <string name="carbohydrate_ifmfd">Углеводы</string>
+    <string name="valueCarbohydrate_ifmfd">0</string>
+
+    <!--ItemFoodMenus-->
+    <string name="text">text</string>
+
+    <!--ItemFoodRecomMenuResult and ItemFoodYourMenuResult-->
+    <string name="weeklyTotal">Итог за неделю</string>
+    <string name="calories_ifmr">кКал</string>
+    <string name="valueCalories_ifmr">0</string>
+    <string name="protein_ifmr">Белки</string>
+    <string name="valueProtein_ifmr">0</string>
+    <string name="gram_ifrmr">г.</string>
+    <string name="fat_ifmr">Жиры</string>
+    <string name="valueFat_ifmr">0</string>
+    <string name="carbohydrate_ifmr">Углеводы</string>
+    <string name="valueCarbohydrate_ifmr">0</string>
+    <string name="informationResult">Для более подробной информации слистните экран влево◀◀◀</string>
+
+    <!--ItemProduct-->
+    <string name="textItemProduct">text</string>
+
+    <!--ItemWeightProduct-->
+    <string name="date_iwh">17.04.20</string>
+    <string name="valueWeight_iwh">76.5</string>
+    <string name="kilogram_iwh">кг</string>
+    <string name="difference_iwh">+1.4</string>
+
+    <!--NavigationHeader-->
+    <string name="nameInHeader">Имя Фамилия</string>
 
 </resources>

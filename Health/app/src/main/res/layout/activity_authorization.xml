@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
             android:layout_marginLeft="3dp"
-            android:text="Логин:"
+            android:text="@string/loginAuth"
             android:textColor="@color/blueDarkDark"
             android:textSize="28sp"/>
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:inputType="textVisiblePassword"
             android:ems="8"
-            android:hint="Введите логин"
+            android:hint="@string/enterLogin"
             android:textSize="23sp"
             android:textColor="@color/blueDarkDark"
             android:textColorHint="@color/purpleHint"
@@ -58,7 +58,7 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Пароль:"
+            android:text="@string/passwordAuth"
             android:textColor="@color/blueDarkDark"
             android:textSize="28sp" />
 
@@ -70,7 +70,7 @@
             android:layout_marginBottom="5dp"
             android:inputType="textPassword"
             android:ems="8"
-            android:hint="Введите пароль"
+            android:hint="@string/enterPassword"
             android:textSize="23sp"
             android:textColor="@color/blueDarkDark"
             android:textColorHint="@color/purpleHint"
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Запомнить"
+                android:text="@string/remember"
                 android:textColor="@color/blueDarkDark"
                 android:textSize="20sp"
                 android:theme="@style/CheckBoxAuthorization"/>
@@ -102,7 +102,7 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:background="@drawable/background_button_authorization"
-                android:text="Войти"
+                android:text="@string/signIn"
                 android:textColor="@color/blueDarkDark"
                 android:textSize="20sp"
                 android:textAllCaps="false" />
@@ -118,7 +118,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:background="@drawable/background_button_authorization"
-            android:text="Зарегестрироваться"
+            android:text="@string/signUp"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp"
             android:textAllCaps="false"

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:text="17.04.20"
+        android:text="@string/date_iwh"
         android:textSize="20sp"
         android:textColor="@color/greyDark"
         android:gravity="center" />
@@ -27,7 +27,7 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="76.5"
+        android:text="@string/valueWeight_iwh"
         android:textSize="30sp"
         android:textColor="@color/blueDarkDark"
         android:gravity="center" />
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:text="кг"
+        android:text="@string/kilogram_iwh"
         android:textSize="18sp"
         android:textColor="@color/blueDarkDark"
         android:gravity="center" />
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:text="+1.4"
+        android:text="@string/difference_iwh"
         android:textSize="25sp"
         android:textColor="@color/redDark"
         android:gravity="center" />

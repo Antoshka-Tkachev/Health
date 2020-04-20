@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Статистика"
+                android:text="@string/statisticsNutr"
                 android:textColor="@color/white"
                 android:textSize="23sp"/>
 
@@ -56,8 +56,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Белки"
-                android:textOff="Белки"
+                android:textOn="@string/protein"
+                android:textOff="@string/protein"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water1"
                 android:textSize="20sp"
@@ -69,8 +69,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Жиры"
-                android:textOff="Жиры"
+                android:textOn="@string/fat"
+                android:textOff="@string/fat"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water2"
                 android:textSize="20sp"
@@ -82,8 +82,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Углев"
-                android:textOff="Углев"
+                android:textOn="@string/carbohydrate"
+                android:textOff="@string/carbohydrate"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water2"
                 android:textSize="20sp"
@@ -95,8 +95,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="кКал"
-                android:textOff="кКал"
+                android:textOn="@string/calories"
+                android:textOff="@string/calories"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water3"
                 android:textSize="20sp"
@@ -119,8 +119,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Год"
-                android:textOff="Год"
+                android:textOn="@string/year"
+                android:textOff="@string/year"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water1"
                 android:textSize="20sp"
@@ -132,8 +132,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Месяц"
-                android:textOff="Месяц"
+                android:textOn="@string/month"
+                android:textOff="@string/month"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water2"
                 android:textSize="20sp"
@@ -145,8 +145,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Неделя"
-                android:textOff="Неделя"
+                android:textOn="@string/week"
+                android:textOff="@string/week"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water3"
                 android:textSize="20sp"
@@ -179,7 +179,7 @@
                 android:layout_weight="5"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="10-17 марта 2020"
+                android:text="@string/diapason"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"
                 android:textAllCaps="false"/>
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="17 марта"
+                android:text="@string/dateExample"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="1234 мл"
+                android:text="@string/valueWater"
                 android:textSize="35sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -248,7 +248,7 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="Всего"
+                android:text="@string/total"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -258,7 +258,7 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="Среднее"
+                android:text="@string/average"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -268,7 +268,7 @@
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="20 000"
+                android:text="@string/_20_000"
                 android:textSize="35sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -278,7 +278,7 @@
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="1950"
+                android:text="@string/_1950"
                 android:textSize="35sp"
                 android:textColor="@color/blueDarkDark"/>
 

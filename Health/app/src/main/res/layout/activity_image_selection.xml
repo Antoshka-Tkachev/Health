@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Выбор картинки"
+        android:text="@string/imageSelection"
         android:textSize="30sp"
         android:textColor="@color/blueDarkDark"/>
 
@@ -51,7 +51,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Загрузить из галереи"
+            android:text="@string/downloadFromGallery"
             android:textSize="15sp"
             android:textAllCaps="false"
             android:textColor="@color/blueDarkDark"
@@ -68,7 +68,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Сохранить"
+            android:text="@string/save"
             android:textSize="15sp"
             android:textAllCaps="false"
             android:textColor="@color/blueDarkDark"

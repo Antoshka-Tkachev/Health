@@ -12,7 +12,7 @@
 
         android:layout_gravity="left"
         android:gravity="left"
-        android:text="Редактировать"
+        android:text="@string/edited"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/blueDarkDark" />
@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Введите новое название меню"
+        android:text="@string/newNameMenu"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark" />
 

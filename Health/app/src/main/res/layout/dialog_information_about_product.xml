@@ -12,7 +12,7 @@
 
         android:layout_gravity="left"
         android:gravity="left"
-        android:text="Информация"
+        android:text="@string/informationAboutProduct"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/blueDarkDark" />
@@ -24,7 +24,7 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Название"
+        android:text="@string/nameProduct_dialog"
         android:textSize="25sp"
         android:textColor="@color/blueDarkDark" />
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="left"
         android:gravity="left"
-        android:text="Характеристики"
+        android:text="@string/infoCaloriesPFC_dialog"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark" />
 

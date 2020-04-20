@@ -12,7 +12,7 @@
 
         android:layout_gravity="start"
         android:gravity="start"
-        android:text="Редактировать"
+        android:text="@string/editedUpdateWeight"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/blueDarkDark" />
@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="start"
         android:gravity="start"
-        android:text="Введите свой вес"
+        android:text="@string/enterYourWeight"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark" />
 

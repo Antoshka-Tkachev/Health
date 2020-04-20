@@ -19,7 +19,7 @@
             android:gravity="center"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp"
-            android:text="Редактирование"
+            android:text="@string/editing"
             android:textColor="@color/blueDarkDark"
             android:textSize="35sp"
             android:shadowColor="#585858"
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                android:text="Выберите картинку"
+                android:text="@string/imageSelectionSet"
                 android:textColor="@color/blueDarkDark"
                 android:textSize="23sp"
                 android:shadowColor="#757575"
@@ -86,7 +86,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="textVisiblePassword"
-            android:hint="Логин"
+            android:hint="@string/loginSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
@@ -106,7 +106,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="textPassword"
-            android:hint="Пароль"
+            android:hint="@string/passwordSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
@@ -125,7 +125,7 @@
             android:paddingRight="10dp"
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
-            android:hint="Повторите пароль"
+            android:hint="@string/replayPasswordSetProf"
             android:inputType="textPassword"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
@@ -146,7 +146,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="textPersonName"
-            android:hint="Имя"
+            android:hint="@string/firstNameSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
@@ -166,7 +166,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="textPersonName"
-            android:hint="Фамилия"
+            android:hint="@string/lastNameSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
@@ -186,7 +186,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="date"
-            android:hint="Рост в см"
+            android:hint="@string/heightSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
@@ -206,7 +206,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="date"
-            android:hint="Вес в кг"
+            android:hint="@string/weightSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"/>
 
@@ -225,7 +225,7 @@
             android:textSize="20sp"
             android:textColor="@color/blueDarkDark"
             android:inputType="date"
-            android:hint="Дата рождения дд.мм.гггг"
+            android:hint="@string/dateOfBirthSetProf"
             android:textColorHint="@color/purpleHint"
             android:background="@drawable/background_edit_text_registration"
             android:elevation="5dp"/>
@@ -248,7 +248,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:text="Пол"
+                android:text="@string/genderSetProf"
                 android:textColor="@color/blueDarkDark"
                 android:textSize="23sp"/>
 
@@ -264,7 +264,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="Мужской"
+                    android:text="@string/genderBoySetProf"
                     android:textSize="15sp"
                     android:textColor="@color/blueDarkDark"/>
 
@@ -272,7 +272,7 @@
                     android:id="@+id/rbtn_genderGirlSetProf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Женский"
+                    android:text="@string/genderGirlSetProf"
                     android:textSize="15sp"
                     android:textColor="@color/blueDarkDark"/>
             </RadioGroup>
@@ -292,7 +292,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:background="@drawable/background_button_authorization"
-            android:text="Сохранить"
+            android:text="@string/saveSetProf"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp"
             android:textAllCaps="false"/>

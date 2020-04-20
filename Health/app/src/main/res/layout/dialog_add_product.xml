@@ -12,7 +12,7 @@
 
         android:layout_gravity="left"
         android:gravity="left"
-        android:text="Добавление"
+        android:text="@string/adding"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/blueDarkDark" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:text="Данного товара нет в базе\nВведите информацию о 100г продукта"
+        android:text="@string/informationAddProduct"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark" />
 
@@ -34,7 +34,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark"
-        android:hint="Название товара" />
+        android:hint="@string/nameProduct" />
 
     <EditText
         android:id="@+id/et_calories"
@@ -44,7 +44,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark"
-        android:hint="кКал" />
+        android:hint="@string/caloriesAddProduct" />
 
     <EditText
         android:id="@+id/et_protein"
@@ -54,7 +54,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark"
-        android:hint="Белки" />
+        android:hint="@string/proteinAddProduct" />
 
     <EditText
         android:id="@+id/et_fat"
@@ -64,7 +64,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark"
-        android:hint="Жиры" />
+        android:hint="@string/fatAddProduct" />
 
     <EditText
         android:id="@+id/et_carbohydrate"
@@ -74,7 +74,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textColor="@color/blueDarkDark"
-        android:hint="Улгеводы" />
+        android:hint="@string/carbohydrateAddProduct" />
 
     <TextView
         android:id="@+id/tv_errorAddProduct"

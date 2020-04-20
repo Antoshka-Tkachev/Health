@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Статистика"
+                android:text="@string/statisticsWater"
                 android:textColor="@color/white"
                 android:textSize="23sp"/>
 
@@ -56,8 +56,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Год"
-                android:textOff="Год"
+                android:textOn="@string/yearWatStat"
+                android:textOff="@string/yearWatStat"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water1"
                 android:textSize="20sp"
@@ -69,8 +69,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Месяц"
-                android:textOff="Месяц"
+                android:textOn="@string/monthWatStat"
+                android:textOff="@string/monthWatStat"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water2"
                 android:textSize="20sp"
@@ -82,8 +82,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textOn="Неделя"
-                android:textOff="Неделя"
+                android:textOn="@string/weekWatStat"
+                android:textOff="@string/weekWatStat"
                 android:textColor="@color/white"
                 android:background="@drawable/background_button_statistic_water3"
                 android:textSize="20sp"
@@ -116,7 +116,7 @@
                 android:layout_weight="5"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="10-17 марта 2020"
+                android:text="@string/diapasonWatStat"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"
                 android:textAllCaps="false"/>
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="17 марта"
+                android:text="@string/dateWatStat"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="1234 мл"
+                android:text="@string/valueWatStat"
                 android:textSize="35sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -185,7 +185,7 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="Всего (мл)"
+                android:text="@string/totalWaterStat"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -195,7 +195,7 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="Среднее (мл)"
+                android:text="@string/averageWaterStat"
                 android:textSize="20sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="20 000"
+                android:text="@string/_20_000WatStat"
                 android:textSize="35sp"
                 android:textColor="@color/blueDarkDark"/>
 
@@ -215,7 +215,7 @@
                 android:layout_height="wrap_content"
                 app:layout_gravity="center"
                 android:gravity="center"
-                android:text="1950"
+                android:text="@string/_1950WatStat"
                 android:textSize="35sp"
                 android:textColor="@color/blueDarkDark"/>
 

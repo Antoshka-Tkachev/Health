@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Итог за неделю"
+        android:text="@string/weeklyTotal"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="@color/blueDarkDark" />
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="кКал"
+            android:text="@string/calories_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -44,7 +44,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:gravity="start"
-            android:text="0"
+            android:text="@string/valueCalories_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="Белки"
+            android:text="@string/protein_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -71,7 +71,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:gravity="start"
-            android:text="0"
+            android:text="@string/valueProtein_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="г."
+            android:text="@string/gram_ifrmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="Жиры"
+            android:text="@string/fat_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -98,7 +98,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:gravity="start"
-            android:text="0"
+            android:text="@string/valueFat_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="г."
+            android:text="@string/gram_ifrmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -114,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="Углеводы"
+            android:text="@string/carbohydrate_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -125,7 +125,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:gravity="start"
-            android:text="0"
+            android:text="@string/valueCarbohydrate_ifmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -133,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="г."
+            android:text="@string/gram_ifrmr"
             android:textColor="@color/blueDarkDark"
             android:textSize="20sp" />
 
@@ -143,7 +143,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:text="Для более подробной информации слистните экран влево◀◀◀"
+        android:text="@string/informationResult"
         android:textColor="@color/blueDarkDark"
         android:textSize="25sp" />
 

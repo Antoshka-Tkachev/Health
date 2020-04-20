@@ -8,7 +8,7 @@
         android:id="@+id/tv_nameMenu_fmfi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Название"
+        android:text="@string/titleFoodMenuFirstItem"
         android:textSize="40sp"
         android:textColor="@color/blueDarkDark"
         android:gravity="center" />
