@@ -28,6 +28,7 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
     private EditText et_volumeWater;
     private TextView tv_goalWater;
     private ImageView iv_waterDrop;
+    private ImageView iv_info;
     private Button btn_plus;
     private Button btn_minus;
     private Button btn_statistics;
@@ -72,11 +73,15 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
         btn_minus = view.findViewById(R.id.btn_minus);
         btn_statistics = view.findViewById(R.id.btn_statisticsWater);
         btn_data = view.findViewById(R.id.btn_dateRecordsWater);
+        iv_info = getActivity().findViewById(R.id.iv_settingsProfile);
+
+        iv_info.setImageResource(R.drawable.ic_info);
 
         btn_plus.setOnClickListener(this);
         btn_minus.setOnClickListener(this);
         btn_statistics.setOnClickListener(this);
         btn_data.setOnClickListener(this);
+        iv_info.setOnClickListener(this);
 
         return view;
     }
@@ -118,6 +123,9 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_statisticsWater:
                 onClickStatistics();
+                break;
+            case R.id.iv_settingsProfile:
+                onClickInfo();
                 break;
         }
     }
@@ -196,6 +204,12 @@ public class FragmentWater extends Fragment implements View.OnClickListener {
     private void onClickDate() {
         dateDialog = new DatePickerDialog(getActivity(), dateDialogListener, valueWater.getYear(), valueWater.getMonth() - 1, valueWater.getDay());
         dateDialog.show();
+    }
+
+    private void onClickInfo() {
+        Intent intent = new Intent(getActivity(), ActivityDescription.class);
+        intent.putExtra("mode", ModeDescription.WATER);
+        startActivity(intent);
     }
 
     private DatePickerDialog.OnDateSetListener dateDialogListener = new DatePickerDialog.OnDateSetListener() {

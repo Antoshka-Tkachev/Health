@@ -42,6 +42,8 @@ public class FragmentProfile extends Fragment {
         iv_userPicture = view.findViewById(R.id.iv_userPictureProf);
         iv_settingsProfile  = getActivity().findViewById(R.id.iv_settingsProfile);
 
+        iv_settingsProfile.setImageResource(R.drawable.ic_create);
+
         return view;
     }
 
@@ -49,12 +51,6 @@ public class FragmentProfile extends Fragment {
     public void onResume() {
         super.onResume();
         printInitialInformation();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        iv_settingsProfile.setVisibility(View.GONE);
     }
 
     private void printInitialInformation() {

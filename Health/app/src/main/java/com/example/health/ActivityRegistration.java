@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,6 +83,11 @@ public class ActivityRegistration extends AppCompatActivity {
             Bitmap bitmap = ((BitmapDrawable)iv_userPicture.getDrawable()).getBitmap();
             userProfile.setUserPicture(bitmap);
         }
+    }
+
+    public void onClickPrivacyPolicy(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/document/d/134UbQ_11lkVqGR3Vmox_xDaZriEWVUtkp3WePnNhHro/edit?usp=sharing"));
+        startActivity(browserIntent);
     }
 
     public void onClickUserPictureReg(View v) {

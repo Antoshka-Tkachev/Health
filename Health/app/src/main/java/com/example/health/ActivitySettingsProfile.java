@@ -99,14 +99,20 @@ public class ActivitySettingsProfile extends AppCompatActivity {
             return;
         }
 
-        setInfoUserProfile();
-        setInfoValueWeight();
-
-        tableUserProfiles.updateRecord();
-        if (tableValueWeight.isRecordExist()) {
-            tableValueWeight.updateRecord();
+        //Если введенный вес не отличается от предыдущего, то запись заность в БД не надо
+        if (Float.parseFloat(et_weight.getText().toString()) == userProfile.getWeight()) {
+            setInfoUserProfile();
+            tableUserProfiles.updateRecord();
         } else {
-            tableValueWeight.insertRecord();
+            setInfoUserProfile();
+            setInfoValueWeight();
+
+            tableUserProfiles.updateRecord();
+            if (tableValueWeight.isRecordExist()) {
+                tableValueWeight.updateRecord();
+            } else {
+                tableValueWeight.insertRecord();
+            }
         }
 
         finish();

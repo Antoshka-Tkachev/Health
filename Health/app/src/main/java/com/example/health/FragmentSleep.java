@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -29,6 +30,7 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
     private Button btn_date;
     private Button btn_statistics;
     private Button btn_recommendations;
+    private ImageView iv_info;
 
     private boolean correctly;
     private String errorMessage;
@@ -81,6 +83,9 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
         btn_date = view.findViewById(R.id.btn_dateRecordsSleep);
         btn_statistics = view.findViewById(R.id.btn_statisticsSleep);
         btn_recommendations = view.findViewById(R.id.btn_recommendationsSleep);
+        iv_info = getActivity().findViewById(R.id.iv_settingsProfile);
+
+        iv_info.setImageResource(R.drawable.ic_info);
 
         tv_fallingAsleep.setOnClickListener(this);
         tv_wakingUp.setOnClickListener(this);
@@ -88,6 +93,7 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
         btn_date.setOnClickListener(this);
         btn_statistics.setOnClickListener(this);
         btn_recommendations.setOnClickListener(this);
+        iv_info.setOnClickListener(this);
 
         return view;
     }
@@ -139,6 +145,9 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_recommendationsSleep:
                 onClickRecommendations();
+                break;
+            case R.id.iv_settingsProfile:
+                onClickInfo();
                 break;
         }
     }
@@ -216,6 +225,12 @@ public class FragmentSleep extends Fragment implements View.OnClickListener {
 
     private void onClickRecommendations() {
         Intent intent = new Intent(getActivity(), ActivityRecommendationSleep.class);
+        startActivity(intent);
+    }
+
+    private void onClickInfo() {
+        Intent intent = new Intent(getActivity(), ActivityDescription.class);
+        intent.putExtra("mode", ModeDescription.SLEEP);
         startActivity(intent);
     }
 

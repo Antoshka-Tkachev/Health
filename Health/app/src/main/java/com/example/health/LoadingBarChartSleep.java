@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class LoadingBarChartSleep extends AsyncTask<Void, Void, Void> {
+public class  LoadingBarChartSleep extends AsyncTask<Void, Void, Void> {
 
     private Activity activitySleepStat;
     private BarChart barChart;

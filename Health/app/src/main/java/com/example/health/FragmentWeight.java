@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ public class FragmentWeight extends Fragment implements View.OnClickListener {
     private TextView tv_kilograms;
     private Button btn_statistics;
     private RecyclerView rv_history;
+    private ImageView iv_info;
 
     private LinearLayoutManager layoutManager;
     private AdapterWeightHistory adapterWeightHistory;
@@ -59,9 +61,13 @@ public class FragmentWeight extends Fragment implements View.OnClickListener {
         tv_kilograms = view.findViewById(R.id.tv_kilograms);
         btn_statistics = view.findViewById(R.id.btn_statisticsWeight);
         rv_history = view.findViewById(R.id.rv_historyWeight);
+        iv_info = getActivity().findViewById(R.id.iv_settingsProfile);
+
+        iv_info.setImageResource(R.drawable.ic_info);
 
         btn_statistics.setOnClickListener(this);
         tv_valueWeight.setOnClickListener(this);
+        iv_info.setOnClickListener(this);
 
         initialValueWeight();
         updateHistory();
@@ -84,6 +90,9 @@ public class FragmentWeight extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tv_valueWeight:
                 onClickValueWeight();
+                break;
+            case R.id.iv_settingsProfile:
+                onClickInfo();
                 break;
         }
     }
@@ -137,6 +146,12 @@ public class FragmentWeight extends Fragment implements View.OnClickListener {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void onClickInfo() {
+        Intent intent = new Intent(getActivity(), ActivityDescription.class);
+        intent.putExtra("mode", ModeDescription.WEIGHT);
+        startActivity(intent);
     }
 
     private void initialValueWeight() {

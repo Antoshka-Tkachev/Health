@@ -1,6 +1,7 @@
 package com.example.health;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class FragmentCalorieCalculator extends Fragment implements View.OnClickL
     private RadioButton rbtn_genderBoy;
     private RadioButton rbtn_genderGirl;
     private Spinner s_physicalActivity;
+    private ImageView iv_info;
 
     private String height;
     private String weight;
@@ -66,10 +69,14 @@ public class FragmentCalorieCalculator extends Fragment implements View.OnClickL
         rbtn_genderBoy = view.findViewById(R.id.rbtn_genderBoy_cc);
         rbtn_genderGirl = view.findViewById(R.id.rbtn_genderGirl_cc);
         s_physicalActivity = view.findViewById(R.id.s_physicalActivity);
+        iv_info = getActivity().findViewById(R.id.iv_settingsProfile);
+
+        iv_info.setImageResource(R.drawable.ic_info);
 
         btn_nutritionControl.setOnClickListener(this);
         btn_foodMenu.setOnClickListener(this);
         btn_calculate.setOnClickListener(this);
+        iv_info.setOnClickListener(this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,
                 new String[] {"Физическая активность...", "Минимальная активность",
@@ -107,6 +114,9 @@ public class FragmentCalorieCalculator extends Fragment implements View.OnClickL
             case R.id.btn_nutritionControl_cc:
                 onClickNutritionControl();
                 break;
+            case R.id.iv_settingsProfile:
+                onClickInfo();
+                break;
         }
     }
 
@@ -129,11 +139,11 @@ public class FragmentCalorieCalculator extends Fragment implements View.OnClickL
 
         double result = 0;
         if (genderBoy) {
-            result = (10 * Integer.valueOf(weight) + 6.25 * Integer.valueOf(height) -
-                    5 * Integer.valueOf(age) + 5) * physicalActivity;
+            result = (10 * Double.valueOf(weight) + 6.25 * Double.valueOf(height) -
+                    5 * Double.valueOf(age) + 5) * physicalActivity;
         } else if (genderGirl) {
-            result = (10 * Integer.valueOf(weight) + 6.25 * Integer.valueOf(height) -
-                    5 * Integer.valueOf(age) - 161) * physicalActivity;
+            result = (10 * Double.valueOf(weight) + 6.25 * Double.valueOf(height) -
+                    5 * Double.valueOf(age) - 161) * physicalActivity;
         }
 
         if (result < 0) {
@@ -142,6 +152,12 @@ public class FragmentCalorieCalculator extends Fragment implements View.OnClickL
 
         String textResult = TEXT_RESULT + String.format("%.2f", result) + TEXT_CALORIES;
         tv_result.setText(textResult);
+    }
+
+    private void onClickInfo() {
+        Intent intent = new Intent(getActivity(), ActivityDescription.class);
+        intent.putExtra("mode", ModeDescription.CALORIE_CALCULATOR);
+        startActivity(intent);
     }
 
     private boolean checkOfEnteredData() {

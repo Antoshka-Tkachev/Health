@@ -1,11 +1,13 @@
 package com.example.health;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +29,7 @@ public class FragmentFoodMenu extends Fragment implements View.OnClickListener {
     private Button btn_createMenu;
     private Button btn_yourMenus;
     private Button btn_recommendedMenus;
+    private ImageView iv_info;
     private RecyclerView rv_menus;
 
     private boolean isModeYourMenu;
@@ -76,12 +79,16 @@ public class FragmentFoodMenu extends Fragment implements View.OnClickListener {
         btn_yourMenus = view.findViewById(R.id.btn_yourMenus);
         btn_recommendedMenus = view.findViewById(R.id.btn_recommendedMenus);
         rv_menus = view.findViewById(R.id.rv_foodMenus);
+        iv_info = getActivity().findViewById(R.id.iv_settingsProfile);
+
+        iv_info.setImageResource(R.drawable.ic_info);
 
         btn_calorieCalc.setOnClickListener(this);
         btn_nutritionControl.setOnClickListener(this);
         btn_createMenu.setOnClickListener(this);
         btn_yourMenus.setOnClickListener(this);
         btn_recommendedMenus.setOnClickListener(this);
+        iv_info.setOnClickListener(this);
 
         return view;
     }
@@ -116,6 +123,9 @@ public class FragmentFoodMenu extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_yourMenus:
                 onClickYourMenus();
+                break;
+            case R.id.iv_settingsProfile:
+                onClickInfo();
                 break;
         }
     }
@@ -177,6 +187,12 @@ public class FragmentFoodMenu extends Fragment implements View.OnClickListener {
 
         rv_menus.setAdapter(adapterYourMenus);
         itemTouchHelper.attachToRecyclerView(rv_menus);
+    }
+
+    private void onClickInfo() {
+        Intent intent = new Intent(getActivity(), ActivityDescription.class);
+        intent.putExtra("mode", ModeDescription.FOOD_MENU);
+        startActivity(intent);
     }
 
     private ItemTouchHelper itemTouchHelper = new ItemTouchHelper(

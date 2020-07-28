@@ -100,18 +100,27 @@ public class AdapterFoodMenuForDays extends RecyclerView.Adapter<RecyclerView.Vi
                         case 1:
                             breakfast.append(countBreakfast).append(". ")
                                     .append(userFoodMenu.getProductsInFoodMenu().get(i).getProductName())
+                                    .append("   ")
+                                    .append(userFoodMenu.getProductsInFoodMenu().get(i).getWeight())
+                                    .append("г.")
                                     .append("\n");
                             countBreakfast++;
                             break;
                         case 2:
                             lunch.append(countLunch).append(". ")
                                     .append(userFoodMenu.getProductsInFoodMenu().get(i).getProductName())
+                                    .append("   ")
+                                    .append(userFoodMenu.getProductsInFoodMenu().get(i).getWeight())
+                                    .append("г.")
                                     .append("\n");
                             countLunch++;
                             break;
                         case 3:
                             dinner.append(countDinner).append(". ")
                                     .append(userFoodMenu.getProductsInFoodMenu().get(i).getProductName())
+                                    .append("   ")
+                                    .append(userFoodMenu.getProductsInFoodMenu().get(i).getWeight())
+                                    .append("г.")
                                     .append("\n");
                             countDinner++;
                             break;

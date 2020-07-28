@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class FragmentNutritionControl extends Fragment implements View.OnClickLi
     private Button btn_addDay;
     private Button btn_foodMenu;
     private Button btn_calorieCalculator;
+    private ImageView iv_info;
     private RecyclerView rv_listDays;
     private DatePickerDialog dateDialog;
 
@@ -58,11 +60,15 @@ public class FragmentNutritionControl extends Fragment implements View.OnClickLi
         btn_addDay = view.findViewById(R.id.btn_addDay_NutCont);
         btn_foodMenu = view.findViewById(R.id.btn_foodMenu_NutCont);
         btn_calorieCalculator = view.findViewById(R.id.btn_calorieCalculator_NutCont);
+        iv_info = getActivity().findViewById(R.id.iv_settingsProfile);
+
+        iv_info.setImageResource(R.drawable.ic_info);
 
         btn_statistics.setOnClickListener(this);
         btn_addDay.setOnClickListener(this);
         btn_foodMenu.setOnClickListener(this);
         btn_calorieCalculator.setOnClickListener(this);
+        iv_info.setOnClickListener(this);
 
         return view;
     }
@@ -100,6 +106,9 @@ public class FragmentNutritionControl extends Fragment implements View.OnClickLi
             case R.id.btn_calorieCalculator_NutCont:
                 onClickCalorieCalculator();
                 break;
+            case R.id.iv_settingsProfile:
+                onClickInfo();
+                break;
         }
     }
 
@@ -124,6 +133,12 @@ public class FragmentNutritionControl extends Fragment implements View.OnClickLi
         Calendar date = Calendar.getInstance();
         dateDialog = new DatePickerDialog(getActivity(), dateDialogListener, date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
         dateDialog.show();
+    }
+
+    private void onClickInfo() {
+        Intent intent = new Intent(getActivity(), ActivityDescription.class);
+        intent.putExtra("mode", ModeDescription.NUTRITION_CONTROL);
+        startActivity(intent);
     }
 
     private DatePickerDialog.OnDateSetListener dateDialogListener = new DatePickerDialog.OnDateSetListener() {
