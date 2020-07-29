@@ -99,7 +99,7 @@ public class ActivitySettingsProfile extends AppCompatActivity {
             return;
         }
 
-        //Если введенный вес не отличается от предыдущего, то запись заность в БД не надо
+        //Если введенный вес не отличается от предыдущего, то запись заносить в БД веса не надо
         if (Float.parseFloat(et_weight.getText().toString()) == userProfile.getWeight()) {
             setInfoUserProfile();
             tableUserProfiles.updateRecord();

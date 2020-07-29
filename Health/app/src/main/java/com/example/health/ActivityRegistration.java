@@ -126,7 +126,7 @@ public class ActivityRegistration extends AppCompatActivity {
         height = et_height.getText().toString();
         weight = et_weight.getText().toString();
         dateOfBirth = et_dateOfBirth.getText().toString();
-
+        
         if (!login.matches("\\S+")){
             correctly = false;
             errorMessage += "Логин не может иметь пробелы\n";

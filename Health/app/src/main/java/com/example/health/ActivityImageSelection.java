@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -20,6 +21,7 @@ public class ActivityImageSelection extends AppCompatActivity {
 
     private ImageView iv_userPicture;
     private GridView gv_imageSelection;
+    private Button btn_openGallery;
 
     private UserProfile userProfile;
 
@@ -30,6 +32,8 @@ public class ActivityImageSelection extends AppCompatActivity {
 
         userProfile = UserProfile.getInstance();
 
+        btn_openGallery = findViewById(R.id.btn_openGallery);
+        btn_openGallery.setVisibility(View.GONE);
         iv_userPicture = findViewById(R.id.iv_userPictureImSel);
         gv_imageSelection = findViewById(R.id.gv_imageSelection);
         gv_imageSelection.setAdapter(new AdapterImageSelection(this));
