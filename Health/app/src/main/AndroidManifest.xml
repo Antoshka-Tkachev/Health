@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.health">
+    package="com.application.health">
 
     <application
         android:allowBackup="true"
@@ -9,54 +9,54 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenLauncher">
-        <activity android:name=".ActivityDescription"
+        <activity android:name="com.application.health.ActivityDescription"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityRecommendationSleep"
+            android:name="com.application.health.ActivityRecommendationSleep"
             android:label="@string/title_activity_recommendation_sleep"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreenLauncher.NoActionBar" />
         <activity
-            android:name=".ActivitySettingsProfile"
+            android:name="com.application.health.ActivitySettingsProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityWeightStatistics"
+            android:name="com.application.health.ActivityWeightStatistics"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityNutrControlStatistics"
+            android:name="com.application.health.ActivityNutrControlStatistics"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityAddingDayMenu"
+            android:name="com.application.health.ActivityAddingDayMenu"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityRecommendedMenu"
+            android:name="com.application.health.ActivityRecommendedMenu"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityFoodMenuPager"
+            android:name="com.application.health.ActivityFoodMenuPager"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivitySleepStatistics"
+            android:name="com.application.health.ActivitySleepStatistics"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityImageSelection"
+            android:name="com.application.health.ActivityImageSelection"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityWaterStatistics"
+            android:name="com.application.health.ActivityWaterStatistics"
             android:screenOrientation="portrait"
             android:theme="@style/HomeActivity" />
         <activity
-            android:name=".ActivityHome"
+            android:name="com.application.health.ActivityHome"
             android:screenOrientation="portrait"
             android:theme="@style/HomeActivity" />
         <activity
-            android:name=".ActivityRegistration"
+            android:name="com.application.health.ActivityRegistration"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivityAuthorization"
+            android:name="com.application.health.ActivityAuthorization"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SplashScreen"
+            android:name="com.application.health.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
